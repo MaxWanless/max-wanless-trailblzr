@@ -1,0 +1,11 @@
+.header {
+  &__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  &__nav-button {
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}
