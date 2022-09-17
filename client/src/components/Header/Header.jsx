@@ -30,8 +30,8 @@ const Header = () => {
       position="static"
       sx={{ background: "transparent", boxShadow: "none" }}
     >
-      <Container maxWidth="xl">
-        <Toolbar>
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
           {/* Desktop Logo */}
           <Box
             sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}

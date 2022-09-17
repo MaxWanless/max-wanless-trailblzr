@@ -1,7 +1,8 @@
+import { Container } from "@mui/material";
 import "./SignUp.scss";
 
 function SignUp() {
-  return <div>Sign Up</div>;
+  return <Container maxWidth="lg">Sign Up</Container>;
 }
 
 export default SignUp;

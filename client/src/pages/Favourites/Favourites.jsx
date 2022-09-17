@@ -1,7 +1,8 @@
+import { Container } from "@mui/material";
 import "./Favourites.scss";
 
 function Favourites() {
-  return <div>Favourites</div>;
+  return <Container maxWidth="lg">Favourites</Container>;
 }
 
 export default Favourites;

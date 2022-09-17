@@ -14,7 +14,7 @@ function App() {
     palette: {},
   });
   return (
-    <div className="App">
+    <div className="app">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Header />
