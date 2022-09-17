@@ -1,0 +1,18 @@
+{
+  "name": "max-wanless-trailblzr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "(cd client && npm install); (cd server && npm install)",
+    "client": "npm start --prefix ./client",
+    "start": "node ./server/server.js",
+    "server": "nodemon ./server/server.js",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
+  "author": "Max Wanless",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
+}
