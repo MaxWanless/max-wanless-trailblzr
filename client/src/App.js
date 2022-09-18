@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, i } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Slide } from "@mui/material";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Favourites from "./pages/Favourites/Favourites";
@@ -17,7 +18,7 @@ function App() {
         main: "#697e59",
       },
       secondary: {
-        main: "#76929b",
+        main: "#FFFFFF",
       },
     },
     typography: {
@@ -41,7 +42,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={<Navigate to="/dashboard" />} />{" "}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/:parkId" element={<ParkDetails />} />
             <Route path="/favourites" element={<Favourites />} />

@@ -4,7 +4,7 @@ import "./Dashboard.scss";
 
 function Dashboard() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ height: "100%" }}>
       <ParkList />
     </Container>
   );

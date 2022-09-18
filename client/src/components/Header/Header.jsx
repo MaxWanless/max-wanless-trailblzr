@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -10,6 +10,8 @@ import {
   Menu,
   MenuItem,
   Button,
+  Tabs,
+  Tab,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import TerrainIcon from "@mui/icons-material/Terrain";
@@ -17,7 +19,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./Header.scss";
 
 const Header = () => {
-  const pages = ["Dashboard", "Favourites", "Account"];
+  const pages = ["dashboard", "favourites", "account"];
   const [showNavMenu, setShowNavMenu] = useState(false);
   const handleOpenNavMenu = (event) => {
     setShowNavMenu(event.currentTarget);
@@ -38,7 +40,7 @@ const Header = () => {
           >
             <TerrainIcon sx={{ mr: 1 }} />
             <Typography
-              variant="h4"
+              variant="h2"
               noWrap
               component="a"
               href=""
@@ -56,17 +58,40 @@ const Header = () => {
           </Box>
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, index) => (
-              <Button
-                className="header__nav-button"
-                component={NavLink}
-                to={`/${page}`}
-                key={page}
-                sx={{ color: "#ffffff" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Tabs
+              value={useLocation().pathname}
+              aria-label="Navigation tabs"
+              textColor="inherit"
+              indicatorColor="secondary"
+            >
+              <Tab
+                label="dashboard"
+                value={`/dashboard`}
+                to={`/dashboard`}
+                component={Link}
+              />
+              <Tab
+                label="favourites"
+                value={`/favourites`}
+                to={`/favourites`}
+                component={Link}
+              />
+              <Tab
+                label="Account"
+                value={`/account`}
+                to={`/account`}
+                component={Link}
+              />
+              {/* {pages.map((page) => (
+                <Tab
+                  label={page}
+                  value={`/${page}`}
+                  to={`/${page}`}
+                  key={page}
+                  component={Link}
+                />
+              ))} */}
+            </Tabs>
           </Box>
           {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -117,7 +142,7 @@ const Header = () => {
           >
             <TerrainIcon sx={{ mr: 1 }} />
             <Typography
-              variant="h5"
+              variant="h2"
               noWrap
               component="a"
               href=""
