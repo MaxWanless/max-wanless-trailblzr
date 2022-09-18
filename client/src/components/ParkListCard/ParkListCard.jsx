@@ -17,14 +17,14 @@ const StyledCardContent = styled(CardContent)(`
 }
 `);
 
-const ParkListCard = () => {
+const ParkListCard = ({ park }) => {
   return (
     <Card sx={{ marginBottom: "0.5rem" }}>
       <StyledCardContent>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar alt="Parks logo" variant="square" src={parkIcon} />
           <Typography variant="h2" color="primary" marginLeft={"1rem"}>
-            Park Name
+            {park.name}
           </Typography>
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
@@ -43,7 +43,7 @@ const ParkListCard = () => {
         >
           <Box sx={{ mr: "1rem" }}>
             <Typography variant="h4">CITY</Typography>
-            <Typography variant="body2">Huntsville</Typography>
+            <Typography variant="body2">{park.city}</Typography>
           </Box>
           <Box>
             <Typography variant="h4">TRAILS</Typography>

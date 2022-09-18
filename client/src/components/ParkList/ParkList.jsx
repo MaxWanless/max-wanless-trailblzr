@@ -2,7 +2,7 @@ import { Container, List } from "@mui/material";
 import ParkListCard from "../ParkListCard/ParkListCard";
 import "./ParkList.scss";
 
-const ParkList = () => {
+const ParkList = ({ parks }) => {
   return (
     <Container
       className="PoopJunior"
@@ -10,10 +10,9 @@ const ParkList = () => {
       sx={{ maxHeight: "100%", overflow: "auto" }}
     >
       <List disablePadding>
-        <ParkListCard />
-        <ParkListCard />
-        <ParkListCard />
-        <ParkListCard />
+        {parks?.map((park) => (
+          <ParkListCard park={park} key={park.name} />
+        ))}
       </List>
     </Container>
   );
