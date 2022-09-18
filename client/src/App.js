@@ -11,7 +11,29 @@ import "./App.scss";
 
 function App() {
   const theme = createTheme({
-    palette: {},
+    palette: {
+      mode: "light",
+      primary: {
+        main: "#697e59",
+      },
+      secondary: {
+        main: "#76929b",
+      },
+    },
+    typography: {
+      fontFamily: [
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(","),
+      h2: { fontSize: 32, fontWeight: 600, lineHeight: 1 },
+      h4: { fontSize: 12, fontWeight: 600, lineHeight: "1.25rem" },
+      body2: { fontSize: 13, fontWeight: 400, lineHeight: "1rem" },
+    },
   });
   return (
     <div className="app">

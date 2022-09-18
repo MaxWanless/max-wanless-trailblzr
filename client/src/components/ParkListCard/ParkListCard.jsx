@@ -23,20 +23,14 @@ const ParkListCard = () => {
       <StyledCardContent>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar alt="Parks logo" variant="square" src={parkIcon} />
-          <Typography
-            fontSize={"32px"}
-            lineHeight={"40px"}
-            fontWeight={"600"}
-            color={"#697E59"}
-            marginLeft={"1rem"}
-          >
+          <Typography variant="h2" color="primary" marginLeft={"1rem"}>
             Park Name
           </Typography>
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
             <IconButton onClick={""}>
-              <ArrowForwardIcon />
+              <ArrowForwardIcon color="primary" />
             </IconButton>
           </Box>
         </Box>
@@ -48,36 +42,12 @@ const ParkListCard = () => {
           }}
         >
           <Box sx={{ mr: "1rem" }}>
-            <Typography
-              fontSize={"11px"}
-              lineHeight={"16px"}
-              fontWeight={"600"}
-            >
-              CITY
-            </Typography>
-            <Typography
-              fontSize={"13px"}
-              lineHeight={"20px"}
-              fontWeight={"400"}
-            >
-              Huntsville
-            </Typography>
+            <Typography variant="h4">CITY</Typography>
+            <Typography variant="body2">Huntsville</Typography>
           </Box>
           <Box>
-            <Typography
-              fontSize={"11px"}
-              lineHeight={"16px"}
-              fontWeight={"600"}
-            >
-              TRAILS
-            </Typography>
-            <Typography
-              fontSize={"13px"}
-              lineHeight={"20px"}
-              fontWeight={"400"}
-            >
-              3
-            </Typography>
+            <Typography variant="h4">TRAILS</Typography>
+            <Typography variant="body2">3</Typography>
           </Box>
         </Box>
       </StyledCardContent>
