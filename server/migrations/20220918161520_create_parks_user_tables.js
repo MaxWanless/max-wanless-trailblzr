@@ -1,55 +1,32 @@
+const { v4: uuidv4 } = require("uuid");
+
 exports.up = function (knex) {
   return knex.schema
     .createTable("parks", (table) => {
-      table.increments("id").primary();
+      table.string("id").primary();
       table.string("name").notNullable();
-      table.timestamp("updated_at").defaultTo(knex.fn.now());
-    })
-    .createTable("parkInformation", (table) => {
-      table.increments("id").primary();
       table.string("phone").notNullable();
       table.string("address").notNullable();
       table.string("city").notNullable();
       table.string("coordinates").notNullable();
-      table.string("size").notNullable();
+      table.string("size").notNullable().defaultTo("N/A");
       table.integer("established").notNullable().defaultTo(0);
       table.string("social").notNullable();
-      table
-        .integer("parkID")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("parks")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("parkTrails", (table) => {
       table.increments("id").primary();
+      table.string("name").notNullable();
       table.string("length").notNullable();
       table.string("difficulty").notNullable();
-      table.string("description").notNullable();
-      table
-        .integer("parkID")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("parks")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+      table.string("description", 1000).notNullable();
+      table.string("parkID").notNullable().references("id").inTable("parks");
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("parkHighlights", (table) => {
       table.increments("id").primary();
       table.string("highlight").notNullable();
-      table
-        .integer("parkID")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("parks")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+      table.string("parkID").notNullable().references("id").inTable("parks");
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("users", (table) => {
@@ -63,8 +40,7 @@ exports.up = function (knex) {
     })
     .createTable("favourites", (table) => {
       table
-        .integer("parkID")
-        .unsigned()
+        .string("parkID")
         .notNullable()
         .references("id")
         .inTable("parks")
@@ -83,10 +59,9 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTable("parks")
-    .dropTable("parkInformation")
     .dropTable("parkHighlights")
     .dropTable("parkTrails")
-    .dropTable("users")
-    .dropTable("favourites");
+    .dropTable("favourites")
+    .dropTable("parks")
+    .dropTable("users");
 };

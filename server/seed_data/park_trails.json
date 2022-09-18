@@ -1,0 +1,177 @@
+[
+  {
+    "parkID": "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca",
+    "name": "Aspen Trail",
+    "length": "2 km",
+    "difficulty": "moderate",
+    "description": "The Aspen Trail will introduce you to stands of boreal forest consisting of aspen, birch, Jack Pine, Balsam Fir and spruce trees. Walk through the remnants of the terrific wind storm of 1973 and over bare rock surfaces scarred by glaciers which melted 10 to 15 thousand years ago! Look for signs of White-tailed Deer, such as browsed branches, tracks and pellets. All the while you will be entertained by Aaron’s 26 species of warblers, as well as other boreal songbirds."
+  },
+  {
+    "parkID": "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca",
+    "name": "Eastern White Cedar Trail",
+    "length": "1.2 km",
+    "difficulty": "easy",
+    "description": "A stroll down this trail will help you appreciate the history and ecology of Aaron. You will walk through large, historic stands of trees, hike along the shores and wetlands of Thunder Lake and climb up a slope to a clay plain. See how many species of amphibians, mammals, birds, trees, flowers, lichens, and mosses you can spot along the way"
+  },
+  {
+    "parkID": "7fa3c535-b3d9-453f-bee7-96f77f9661f3",
+    "name": "Beaver Meadow Trail",
+    "length": "7 km",
+    "difficulty": "moderate",
+    "description": "Arrowhead’s longest trail passes Porcupine Bluffs, the remnant shoreline of a huge ancient lake. The bluffs are easily visible in the spring and fall but are hidden during the leafy summer months. The trail circles a large beaver pond with large rafts of cattails where you might see otter, moose, Great Blue Heron, Tree Swallows and, of course, beavers. Near the end, the trail crosses a field and you can see evidence of the once successful Oke homestead—old fence lines, building foundations and domestic plants such as rhubarb and apple trees."
+  },
+  {
+    "parkID": "7fa3c535-b3d9-453f-bee7-96f77f9661f3",
+    "name": "Stubb’s Falls Trail",
+    "length": "2 km",
+    "difficulty": "easy",
+    "description": "Take this trail in early spring when wildflowers and songbirds will be your reward. At Stubb’s Falls, the Little East River rushes down a rock chute. Stop here for a pleasant respite."
+  },
+  {
+    "parkID": "7fa3c535-b3d9-453f-bee7-96f77f9661f3",
+    "name": "Homesteaders Trail",
+    "length": "3 km",
+    "difficulty": "moderate",
+    "description": "In the 1870s, homesteaders cleared this area. Take this trail across moderately rugged terrain and see traces of abandoned farm fields now reclaimed by young forest."
+  },
+  {
+    "parkID": "908cb1e4-176c-415a-bd09-1dd2a70083a8",
+    "name": "Fire Tower Trail",
+    "length": "4.1 km",
+    "difficulty": "dificult",
+    "description": "The “must do” hiking trail in Restoule. The trail meanders through some beautiful mature forests, travelling across boardwalks and rugged rocky ridges. The trail offers a great rest location and view point at Amber Lake, and also passes by a historic Fire Tower. After a challenging climb this trail will continue to impress with a spectacular view from atop the 100 meter high Stormy Lake Bluff."
+  },
+  {
+    "parkID": "908cb1e4-176c-415a-bd09-1dd2a70083a8",
+    "name": "The River Trail",
+    "length": "1.2 km",
+    "difficulty": "easy",
+    "description": "This trail takes you through the rolling topography of the west side of the Restoule River. It is a gently paced trail that will take you along the river and then through some beautiful mature forests."
+  },
+  {
+    "parkID": "908cb1e4-176c-415a-bd09-1dd2a70083a8",
+    "name": "Gibs Trail",
+    "length": "4.8 km",
+    "difficulty": "moderate",
+    "description": "This is a linear trail with a return trip distance of 4.8km (2.4km each way). The trail travels through large mature beech and mixed hardwood forests ending at a scenic lookout and swim spot on the shore of Stormy Lake."
+  },
+  {
+    "parkID": "5ac78553-299d-419e-81dd-efa6a7f31999",
+    "name": "Cliff Top Trail",
+    "length": "1.5 km",
+    "difficulty": "difficult",
+    "description": "This trail is only accessible by water. Canoe and kayak rentals are available in the Lagoon. Stairs and a pathway take hikers to the top of Mazinaw Rock to three observation decks overlooking the lake."
+  },
+  {
+    "parkID": "5ac78553-299d-419e-81dd-efa6a7f31999",
+    "name": "Shield Trail",
+    "length": "4.8 km",
+    "difficulty": "moderate",
+    "description": "Follow a section of the old Addington Road as it crosses the rugged landscape of the Canadian Shield where you will see hardwood forests, cedar lowlands and a beaver swamp."
+  },
+  {
+    "parkID": "5ac78553-299d-419e-81dd-efa6a7f31999",
+    "name": "Pet Exercise Trail",
+    "length": "1.4 km",
+    "difficulty": "easy",
+    "description": "Let your furry friend off-leash on this designated pet exercise trail."
+  },
+  {
+    "parkID": "60a14b02-6683-4978-8626-eea213249048",
+    "name": "Maiden’s Blush Trail",
+    "length": "1 km",
+    "difficulty": "easy",
+    "description": "The trailhead is north of the Children’s Playbarn (Lot C). This paved trail winds through mature forest and is suitable for walking, roller blading and cycling. This trail is wheelchair accessible."
+  },
+  {
+    "parkID": "60a14b02-6683-4978-8626-eea213249048",
+    "name": "Halfmoon Valley Trail",
+    "length": "2 km",
+    "difficulty": "moderate",
+    "description": "Trailhead is minutes from Spruce Lane Farmhouse (lot F). Explore the Bronte Creek valley and the parks early history. It includes some steep climbs and may not be suitable for disabled visitors. MP3 audio tour available."
+  },
+  {
+    "parkID": "60a14b02-6683-4978-8626-eea213249048",
+    "name": "Ravine Trail",
+    "length": "2.7 km",
+    "difficulty": "easy",
+    "description": "This linear path meanders along the top of the valley between Spruce Lane Farm and the picnic area by Parking Lot A."
+  },
+  {
+    "parkID": "aba2a868-052b-4ba0-be8b-e77afd8aaed8",
+    "name": "Rainbow Run",
+    "length": "11 km",
+    "difficulty": "moderate",
+    "description": "This trail is a loop that encompasses the entire trail system around Earl Rowe. This shared-use trail allows for walking or biking to the pool, park store, Resource Centre or your favourite fishing spot. A portion of this trail includes a moderate incline to a lookout platform."
+  },
+  {
+    "parkID": "aba2a868-052b-4ba0-be8b-e77afd8aaed8",
+    "name": "Lookout Trail",
+    "length": "4 km",
+    "difficulty": "moderate",
+    "description": "Take this trail for a hike up to a beautiful lookout platform overlooking Earl Rowe and surrounding area. This trail includes a moderate climb and biking is not recommended."
+  },
+  {
+    "parkID": "aba2a868-052b-4ba0-be8b-e77afd8aaed8",
+    "name": "Resource Trail",
+    "length": "1.5 km",
+    "difficulty": "easy",
+    "description": "Follow this easy trail and learn about the great natural resources at Earl Rowe."
+  },
+  {
+    "parkID": "aba2a868-052b-4ba0-be8b-e77afd8aaed8",
+    "name": "Little Trail",
+    "length": "0.5 km",
+    "difficulty": "easy",
+    "description": "Designed for a quick, easy walk through the woods from Westbeach to the main road, the Little Trail will bring you out by our fish ladder and dam."
+  },
+  {
+    "parkID": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Jobes’ Woods Trail",
+    "length": "1.0 km",
+    "difficulty": "easy",
+    "description": "This trail winds through an area that was once part of a farm settled by Thomas and Ezekial Jobes in 1835. This part of their farm remained relatively undisturbed by settlement activity and today contains one of the oldest deciduous woodlots at Presqu’ile."
+  },
+  {
+    "parkID": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Cemetery Trail",
+    "length": "0.3 km",
+    "difficulty": "easy",
+    "description": "This path connects the cemetery interpretive panel at the Camp Office parking lot with the site of an abandoned pioneer cemetery. The site itself is marked with a commemorative granite boulder, though no other evidence remains."
+  },
+  {
+    "parkID": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Pioneer and Newcastle Trails",
+    "length": " 8.1 km",
+    "difficulty": "easy",
+    "description": "These trails lead you through the forests, plantations and old fields found in the heart of the Presqu’ile peninsula.  Along these trails you will encounter a diversity of plants and wildlife in the mature beech-maple forest, old fields and early succession forest which dominate this area of the park."
+  },
+  {
+    "parkID": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Marsh Trail",
+    "length": "1.2 km",
+    "difficulty": "easy",
+    "description": "This trail includes 800 m of boardwalk complete with two viewing towers and a teaching platform (great for picnics too!) that takes visitors into the marsh. Sixteen interpretive panels along the trail illustrate the story of the marsh and its inhabitants.  The boardwalk portion of the trail is barrier-free."
+  },
+  {
+    "parkID": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Owen Point Trail",
+    "length": "1.6 km",
+    "difficulty": "easy",
+    "description": "This trail offers excellent opportunities to see migrating shorebirds along the natural beach and distant views of the waterbird colonies on their island nesting grounds. The trail can be accessed from the south end of the beach or from the west end of High Bluff Campground."
+  },
+  {
+    "parkID": "6d538518-8a67-49f0-8cbb-85dacd258abb",
+    "name": "McNaugton Trail",
+    "length": "2 km",
+    "difficulty": "easy",
+    "description": "Take an easy stroll along the meandering Bonnechere River and learn about its rich natural and cultural history by exploring our Foot Prints in Time (FIT). FIT is based on the traditional local First Nations way of teaching and explaining our history. The trail takes you in stride with 13 giant foot prints, marked by posts with interpretive and educational text designed to be informative and engage you and your family along the hike. You will truly enjoy this adventure."
+  },
+  {
+    "parkID": "6d538518-8a67-49f0-8cbb-85dacd258abb",
+    "name": "Walks of the Little Bonnechere River",
+    "length": "3 km",
+    "difficulty": "moderate",
+    "description": "The Walks of the Little Bonnechere River is a compilation of 10 local trails and stopping places which will help you gain an understanding of the history of the river and its people. Each trail offers a variety of experiences and opportunities to explore natural and cultural history. Trail length and difficulty vary, providing an opportunity for all to enjoy."
+  }
+]

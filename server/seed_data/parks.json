@@ -1,0 +1,90 @@
+[
+  {
+    "id": "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca",
+    "name": "Aaron",
+    "phone": "807-938-6534",
+    "address": "479 Government Street Dryden, ON P8N 2Z4",
+    "city": "Dryden",
+    "coordinates": "STRING",
+    "size": "116.74 ha",
+    "established": 1958,
+    "Social": "https://www.facebook.com/AaronProvPark/"
+  },
+  {
+    "id": "7fa3c535-b3d9-453f-bee7-96f77f9661f3",
+    "name": "Arrowhead",
+    "phone": "705-789-5105",
+    "address": "451 Arrowhead Park Rd. Huntsville P1H 2J4",
+    "city": "Huntsville",
+    "coordinates": "STRING",
+    "size": "1237.00 ha",
+    "established": 1971,
+    "Social": "https://www.facebook.com/ArrowheadPP/"
+  },
+  {
+    "id": "908cb1e4-176c-415a-bd09-1dd2a70083a8",
+    "name": "Restoule",
+    "phone": "705-729-2010",
+    "address": "8818 Highway 534 Restoule P0H 2R0",
+    "city": "Restoule",
+    "coordinates": "STRING",
+    "size": "2619.00 ha",
+    "established": 1963,
+    "Social": "https://www.facebook.com/RestouleProvPark/"
+  },
+  {
+    "id": "5ac78553-299d-419e-81dd-efa6a7f31999",
+    "name": "Bon Echo",
+    "phone": "613-336-2228",
+    "address": "16151 Hwy. 41 Cloyne, Ontario K0H 1K0",
+    "city": "Cloyne",
+    "coordinates": "STRING",
+    "size": "8294.00 ha",
+    "established": 1965,
+    "Social": "https://twitter.com/BonEchoPP"
+  },
+  {
+    "id": "60a14b02-6683-4978-8626-eea213249048",
+    "name": "Bronte Creek",
+    "phone": "905-827-6911",
+    "address": "1219 Burloak Drive Oakville L6M 4J7",
+    "city": "Oakville",
+    "coordinates": "STRING",
+    "size": "682.23 ha",
+    "established": "1975",
+    "Social": "https://www.facebook.com/OPBronteCreek/"
+  },
+  {
+    "id": "aba2a868-052b-4ba0-be8b-e77afd8aaed8",
+    "name": "Earl Rowe",
+    "phone": "705-435-2498",
+    "address": "4998 Concession #7 Tosorontio Township L9R 1W1",
+    "city": "Tosorontio",
+    "coordinates": "STRING",
+    "size": "312.42 ha",
+    "established": 1964,
+    "Social": "https://www.facebook.com/EarlRowePP/"
+  },
+  {
+    "id": "84016edd-6577-4996-9e50-bcaf2ae5145e",
+    "name": "Presqu'ile",
+    "phone": "613-475-4324",
+    "address": "328 Presqu’ile Parkway Brighton K0K 1H0",
+    "city": "Brighton",
+    "coordinates": "STRING",
+    "size": "982.00 ha",
+    "established": "1922",
+    "Social": "https://www.facebook.com/PresquilePP/"
+  },
+  {
+    "id": "6d538518-8a67-49f0-8cbb-85dacd258abb",
+    "name": "Bonnechere",
+    "phone": "613-757-2103",
+    "address": "4024 Round Lake Rd. Killaloe K0J 2A0",
+    "city": "Killaloe",
+    "coordinates": "STRING",
+    "size": "162.00 ha",
+    "established": 1967,
+    "Social": "https://www.facebook.com/BonnecherePP/"
+  }
+]
