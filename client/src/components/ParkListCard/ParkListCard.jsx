@@ -19,7 +19,7 @@ const StyledCardContent = styled(CardContent)(`
 }
 `);
 
-const ParkListCard = ({ park }) => {
+const ParkListCard = ({ park, handleChange }) => {
   const [navParkDetails, setNavParkDetails] = useState(false);
   const handleNavigateParkDeta = () => {
     setNavParkDetails(true);
@@ -40,7 +40,7 @@ const ParkListCard = ({ park }) => {
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
-            <IconButton onClick={handleNavigateParkDeta}>
+            <IconButton onClick={() => handleChange(park.id)}>
               <ArrowForwardIcon color="primary" />
             </IconButton>
           </Box>
