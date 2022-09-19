@@ -1,6 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate, i } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Slide } from "@mui/material";
+import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Favourites from "./pages/Favourites/Favourites";
@@ -11,6 +17,7 @@ import Header from "./components/Header/Header";
 import "./App.scss";
 
 function App() {
+  const location = useLocation();
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -39,18 +46,18 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />{" "}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/:parkId" element={<ParkDetails />} />
-            <Route path="/favourites" element={<Favourites />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </BrowserRouter>
+        <Header />
+        {/* <Routes> */}
+        <SlideRoutes location={location}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/:parkId" element={<ParkDetails />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+        </SlideRoutes>
+        {/* </Routes> */}
       </ThemeProvider>
     </div>
   );
