@@ -49,7 +49,7 @@ function Dashboard() {
           container={mobileRef.current}
         >
           <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
-            <ParkDetailsCard />
+            <ParkDetailsCard handleChange={handleDisplayParkDetails} />
           </Box>
         </Slide>
       </Box>
