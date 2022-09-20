@@ -24,7 +24,7 @@ function SignUp() {
       password: event.target.password.value,
     };
     axios
-      .post("http://localhost:5050/user/register", newUser)
+      .post("http://localhost:5050/users/register", newUser)
       .then((response) => setRegisterSuccess(true))
       .catch((error) => setUserExits(true));
   };

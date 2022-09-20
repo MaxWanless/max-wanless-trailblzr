@@ -47,13 +47,13 @@ exports.register = (req, res) => {
           .status(400)
           .json({ message: "User with that username already exists" });
       }
-    })
-    .catch((error) => {
-      res.status(400).json({
-        message: "Ran into issue signing up user",
-        erorr: error,
-      });
     });
+  // .catch((error) => {
+  //   res.status(400).json({
+  //     message: "Ran into issue signing up user",
+  //     erorr: error,
+  //   });
+  // });
 };
 
 exports.login = (req, res) => {
@@ -84,5 +84,17 @@ exports.login = (req, res) => {
       res
         .status(401)
         .json({ message: "Unable to find user with that name", error: error });
+    });
+};
+
+exports.deleteUser = (req, res) => {
+  knex("users")
+    .delete()
+    .where({ id: req.params.id })
+    .then(() => {
+      res.status(204).send(`User has been deleted`);
+    })
+    .catch((error) => {
+      res.status(400).send(`Error deleting User ${error}`);
     });
 };
