@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 import {
   Avatar,
   Card,
@@ -16,7 +15,6 @@ import {
   Snackbar,
   Button,
   Slide,
-  Skeleton,
 } from "@mui/material";
 import SwipeableViews from "react-swipeable-views";
 import parksIcon from "../../assets/logos/parks-logo.png";

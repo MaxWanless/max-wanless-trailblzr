@@ -1,10 +1,5 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
@@ -18,6 +13,11 @@ import "./App.scss";
 
 function App() {
   const location = useLocation();
+  const [searchText, setSearchText] = useState("");
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value);
+    console.log(searchText);
+  };
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -46,7 +46,10 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
-        <Header />
+        <Header
+          handleSearchChange={handleSearchChange}
+          searchText={searchText}
+        />
         {/* <Routes> */}
         <SlideRoutes location={location}>
           <Route path="/" element={<Dashboard />} />

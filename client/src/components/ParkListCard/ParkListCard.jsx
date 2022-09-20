@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -20,15 +18,6 @@ const StyledCardContent = styled(CardContent)(`
 `);
 
 const ParkListCard = ({ park, handleChange }) => {
-  const [navParkDetails, setNavParkDetails] = useState(false);
-  const handleNavigateParkDeta = () => {
-    setNavParkDetails(true);
-  };
-
-  if (navParkDetails) {
-    return <Navigate to={`/dashboard/${park.id}`} />;
-  }
-
   return (
     <Card sx={{ marginBottom: "0.5rem" }}>
       <StyledCardContent>

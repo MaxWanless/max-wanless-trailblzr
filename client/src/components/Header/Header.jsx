@@ -9,16 +9,18 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Button,
   Tabs,
   Tab,
+  styled,
+  InputBase,
+  alpha,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import TerrainIcon from "@mui/icons-material/Terrain";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Header.scss";
 
-const Header = () => {
+const Header = ({ handleSearchChange, searchText }) => {
   const pages = ["dashboard", "favourites", "account"];
   const [showNavMenu, setShowNavMenu] = useState(false);
   const handleOpenNavMenu = (event) => {
@@ -27,6 +29,49 @@ const Header = () => {
   const handleCloseNavMenu = () => {
     setShowNavMenu(null);
   };
+
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("xs")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  }));
+
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "inherit",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("xs")]: {
+        width: "0",
+        "&:focus": {
+          width: "20ch",
+        },
+      },
+    },
+  }));
+
   return (
     <AppBar
       position="static"
@@ -140,8 +185,8 @@ const Header = () => {
               alignItems: "center",
             }}
           >
-            <TerrainIcon sx={{ mr: 1 }} />
-            <Typography
+            <TerrainIcon fontSize="large" />
+            {/* <Typography
               variant="h2"
               noWrap
               component="a"
@@ -157,25 +202,25 @@ const Header = () => {
               }}
             >
               TrailBLZR
-            </Typography>
+            </Typography> */}
           </Box>
           {/* Mobile Search */}
           <Box
             sx={{
-              flexGrow: 0,
-              display: { xs: "flex", md: "none" },
+              position: "relative",
             }}
           >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={null}
-              color="inherit"
-            >
-              <SearchIcon />
-            </IconButton>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                onChange={handleSearchChange}
+                value={searchText}
+              />
+            </Search>
           </Box>
         </Toolbar>
       </Container>
