@@ -9,10 +9,22 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 import "./Account.scss";
+
+const ModalStyle = {
+  position: "absolute",
+  top: "30%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  boxShadow: 24,
+  p: 4,
+};
 
 function Account() {
   const [signOut, setSignOut] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [updateInfoSuccess, setUpdateInfoSuccess] = useState(false);
   let token = "";
   let decodedUser = {};
@@ -20,6 +32,7 @@ function Account() {
   if (!sessionStorage.getItem("authorization") && !signOut) {
     setSignOut(true);
   }
+
   if (sessionStorage.getItem("authorization")) {
     token = sessionStorage.getItem("authorization").split(" ")[1];
     decodedUser = jwt_decode(token);
@@ -30,7 +43,27 @@ function Account() {
     setSignOut(true);
   };
 
-  const handleSubmit = () => {
+  const handleOpenDeleteModalAccount = () => {
+    setOpenDeleteModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenDeleteModal(false);
+  };
+
+  const handleDeleteUser = () => {
+    console.log(decodedUser);
+    axios
+      .delete(`http://localhost:5050/users/${decodedUser.id}`)
+      .then((response) => {
+        sessionStorage.removeItem("authorization");
+        setSignOut(true);
+      })
+      .catch((error) => {});
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     axios.put().then((response) => {
       setUpdateInfoSuccess(true);
     });
@@ -104,6 +137,14 @@ function Account() {
           <Button
             variant="contained"
             fullWidth
+            onClick={handleOpenDeleteModalAccount}
+            sx={{ marginTop: "1rem" }}
+          >
+            delete account
+          </Button>
+          <Button
+            variant="contained"
+            fullWidth
             onClick={handleSignOut}
             sx={{ marginTop: "1rem" }}
           >
@@ -111,6 +152,35 @@ function Account() {
           </Button>
         </CardContent>
       </Card>
+      <Modal
+        open={openDeleteModal}
+        onClose={setOpenDeleteModal}
+        aria-labelledby=""
+        aria-describedby=""
+      >
+        <Card sx={ModalStyle}>
+          <CardContent>
+            <Typography variant="h2" marginBottom={"1rem"}>
+              Delete Account?
+            </Typography>
+            <Typography variant="body1">
+              Please confirm that you’d like to delete the Washington from the
+              list of warehouses. You won’t be able to undo this action.
+            </Typography>
+          </CardContent>
+          <Button variant="text" onClick={handleCloseModal} fullWidth>
+            Cancel
+          </Button>
+          <Button
+            variant="text"
+            onClick={handleDeleteUser}
+            fullWidth
+            color="error"
+          >
+            Delete
+          </Button>
+        </Card>
+      </Modal>
     </Container>
   );
 }
