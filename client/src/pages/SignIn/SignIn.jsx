@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -12,19 +13,35 @@ import "./SignIn.scss";
 import axios from "axios";
 
 function SignIn() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleChange = (name) => (event) => {};
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let userInfo = {
-      username: event.target.username.value,
+      userName: event.target.username.value,
       password: event.target.password.value,
     };
     axios
-      .post("http://localhost:5050/user/register", userInfo)
-      .then((response) => {})
-      .catch((error) => {});
+      .post("http://localhost:5050/users/login", userInfo)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          sessionStorage.setItem(
+            "authorization",
+            `Bearer ${response.data.token}`
+          );
+        }
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <Container
