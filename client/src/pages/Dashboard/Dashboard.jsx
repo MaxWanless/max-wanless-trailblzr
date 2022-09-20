@@ -9,8 +9,9 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [parks, setParks] = useState(true);
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
-  const [currentParkID, setCurrentParkID] = useState("");
+  const [currentPark, setCurrentPark] = useState({});
   const mobileRef = useRef(null);
+
   useEffect(() => {
     axios
       .get("http://localhost:5050/parks")
@@ -22,10 +23,11 @@ function Dashboard() {
         console.log(error);
       });
   }, []);
-
-  const handleDisplayParkDetails = (parkID) => {
+  const handleDisplayParkDetails = (park) => {
     setDisplayParkDetails(!displayParkDetails);
-    setCurrentParkID(parkID);
+    if (!displayParkDetails) {
+      setCurrentPark(park);
+    }
   };
 
   if (loading) {
@@ -49,7 +51,10 @@ function Dashboard() {
           container={mobileRef.current}
         >
           <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
-            <ParkDetailsCard handleChange={handleDisplayParkDetails} />
+            <ParkDetailsCard
+              handleChange={handleDisplayParkDetails}
+              currentPark={currentPark}
+            />
           </Box>
         </Slide>
       </Box>

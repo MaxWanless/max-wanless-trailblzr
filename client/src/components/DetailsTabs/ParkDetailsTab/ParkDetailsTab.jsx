@@ -2,7 +2,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import { Typography, Box, IconButton } from "@mui/material";
 import "./ParkDetailsTab.scss";
 
-const ParkDetailsTab = ({ park }) => {
+const ParkDetailsTab = ({ currentPark }) => {
   return (
     <Box>
       {/* Details Top Row */}
@@ -15,28 +15,16 @@ const ParkDetailsTab = ({ park }) => {
         }}
       >
         <Box sx={{ mr: "1rem" }}>
-          <Typography fontSize={"11px"} lineHeight={"16px"} fontWeight={"600"}>
-            CITY
-          </Typography>
-          <Typography fontSize={"13px"} lineHeight={"20px"} fontWeight={"400"}>
-            Huntsville
-          </Typography>
+          <Typography variant="h4">CITY</Typography>
+          <Typography variant="body2">{currentPark.city}</Typography>
         </Box>
         <Box>
-          <Typography fontSize={"11px"} lineHeight={"16px"} fontWeight={"600"}>
-            ESTABLISHED
-          </Typography>
-          <Typography fontSize={"13px"} lineHeight={"20px"} fontWeight={"400"}>
-            1945
-          </Typography>
+          <Typography variant="h4">ESTABLISHED</Typography>
+          <Typography variant="body2">{currentPark.established}</Typography>
         </Box>
         <Box>
-          <Typography fontSize={"11px"} lineHeight={"16px"} fontWeight={"600"}>
-            PHONE
-          </Typography>
-          <Typography fontSize={"13px"} lineHeight={"20px"} fontWeight={"400"}>
-            1234567890
-          </Typography>
+          <Typography variant="h4">PHONE</Typography>
+          <Typography variant="body2">{currentPark.phone}</Typography>
         </Box>
       </Box>
       {/* Details Bottom Row */}
@@ -49,18 +37,12 @@ const ParkDetailsTab = ({ park }) => {
         }}
       >
         <Box sx={{ mr: "1rem", width: "150px" }}>
-          <Typography fontSize={"11px"} lineHeight={"16px"} fontWeight={"600"}>
-            ADDRESS
-          </Typography>
-          <Typography fontSize={"13px"} lineHeight={"20px"} fontWeight={"400"}>
-            ~~~~~~~~~~~~~~
-          </Typography>
+          <Typography variant="h4">ADDRESS</Typography>
+          <Typography variant="body2">{currentPark.address}</Typography>
         </Box>
         <Box sx={{ mr: "1rem" }}>
-          <Typography fontSize={"11px"} lineHeight={"16px"} fontWeight={"600"}>
-            SOCIAL
-          </Typography>
-          <IconButton size="small">
+          <Typography variant="h4">SOCIAL</Typography>
+          <IconButton size="small" type="a" href={currentPark.social}>
             <FacebookIcon fontSize="large" />
           </IconButton>
         </Box>

@@ -40,7 +40,7 @@ const ParkListCard = ({ park, handleChange }) => {
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
-            <IconButton onClick={() => handleChange(park.id)}>
+            <IconButton onClick={() => handleChange(park)}>
               <ArrowForwardIcon color="primary" />
             </IconButton>
           </Box>

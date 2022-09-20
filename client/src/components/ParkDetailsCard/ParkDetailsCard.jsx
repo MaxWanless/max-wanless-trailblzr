@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 import {
   Avatar,
   Card,
@@ -15,18 +16,19 @@ import {
   Snackbar,
   Button,
   Slide,
+  Skeleton,
 } from "@mui/material";
 import SwipeableViews from "react-swipeable-views";
 import parksIcon from "../../assets/logos/parks-logo.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+// import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./ParkDetailsCard.scss";
 import ParkDetailsTab from "../DetailsTabs/ParkDetailsTab/ParkDetailsTab";
 import ParkHighlightsTab from "../DetailsTabs/ParkHighlightsTab/ParkHighlightsTab";
 import ParkTrailsTab from "../DetailsTabs/ParkTrailsTab/ParkTrailsTab";
 
-const ParkDetailsCard = ({ handleChange }) => {
+const ParkDetailsCard = ({ handleChange, currentPark }) => {
   const theme = useTheme();
   const [activeTab, setActiveTab] = useState(0);
   const [openSnack, setOpenSnack] = useState(false);
@@ -69,7 +71,7 @@ const ParkDetailsCard = ({ handleChange }) => {
             </IconButton>
             <Avatar alt="Parks logo" variant="square" src={parksIcon} />
             <Typography variant="h2" color="primary" marginLeft={"1rem"}>
-              Park Name
+              {currentPark.name}
             </Typography>
             <Box
               sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
@@ -90,11 +92,13 @@ const ParkDetailsCard = ({ handleChange }) => {
           >
             <Box sx={{ mr: "1rem" }}>
               <Typography variant="h4">CITY</Typography>
-              <Typography variant="body2">Cityname</Typography>
+              <Typography variant="body2">{currentPark.city}</Typography>
             </Box>
             <Box>
               <Typography variant="h4">TRAILS</Typography>
-              <Typography variant="body2">~</Typography>
+              <Typography variant="body2">
+                {currentPark.NumberOfTrails}
+              </Typography>
             </Box>
           </Box>
         </CardContent>
@@ -110,13 +114,24 @@ const ParkDetailsCard = ({ handleChange }) => {
             index={activeTab}
             onChangeIndex={handleTabSwipe}
           >
-            <ParkDetailsTab value={activeTab} index={2} dir={theme.direction} />
+            <ParkDetailsTab
+              value={activeTab}
+              index={2}
+              dir={theme.direction}
+              currentPark={currentPark}
+            />
             <ParkHighlightsTab
               value={activeTab}
               index={0}
               dir={theme.direction}
+              currentPark={currentPark}
             />
-            <ParkTrailsTab value={activeTab} index={1} dir={theme.direction} />
+            <ParkTrailsTab
+              value={activeTab}
+              index={1}
+              dir={theme.direction}
+              currentPark={currentPark}
+            />
           </SwipeableViews>
         </CardContent>
       </Card>
