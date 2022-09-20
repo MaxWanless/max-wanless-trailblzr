@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -9,8 +9,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Tabs,
-  Tab,
   styled,
   InputBase,
   alpha,
@@ -18,11 +16,11 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import TerrainIcon from "@mui/icons-material/Terrain";
 import SearchIcon from "@mui/icons-material/Search";
-import "./Header.scss";
 
-const Header = ({ handleSearchChange, searchText }) => {
+const MobileHeader = () => {
   const pages = ["dashboard", "favourites", "account"];
   const [showNavMenu, setShowNavMenu] = useState(false);
+
   const handleOpenNavMenu = (event) => {
     setShowNavMenu(event.currentTarget);
   };
@@ -79,65 +77,6 @@ const Header = ({ handleSearchChange, searchText }) => {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          {/* Desktop Logo */}
-          <Box
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-          >
-            <TerrainIcon sx={{ mr: 1 }} />
-            <Typography
-              variant="h2"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              TrailBLZR
-            </Typography>
-          </Box>
-          {/* Desktop Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Tabs
-              value={useLocation().pathname}
-              aria-label="Navigation tabs"
-              textColor="inherit"
-              indicatorColor="secondary"
-            >
-              <Tab
-                label="dashboard"
-                value={`/dashboard`}
-                to={`/dashboard`}
-                component={Link}
-              />
-              <Tab
-                label="favourites"
-                value={`/favourites`}
-                to={`/favourites`}
-                component={Link}
-              />
-              <Tab
-                label="Account"
-                value={`/account`}
-                to={`/account`}
-                component={Link}
-              />
-              {/* {pages.map((page) => (
-                <Tab
-                  label={page}
-                  value={`/${page}`}
-                  to={`/${page}`}
-                  key={page}
-                  component={Link}
-                />
-              ))} */}
-            </Tabs>
-          </Box>
           {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -187,22 +126,22 @@ const Header = ({ handleSearchChange, searchText }) => {
           >
             <TerrainIcon fontSize="large" />
             {/* <Typography
-              variant="h2"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              TrailBLZR
-            </Typography> */}
+                variant="h2"
+                noWrap
+                component="a"
+                href=""
+                sx={{
+                  mr: 2,
+                  flexGrow: 1,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                TrailBLZR
+              </Typography> */}
           </Box>
           {/* Mobile Search */}
           <Box
@@ -217,8 +156,6 @@ const Header = ({ handleSearchChange, searchText }) => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
-                onChange={handleSearchChange}
-                value={searchText}
               />
             </Search>
           </Box>
@@ -228,4 +165,4 @@ const Header = ({ handleSearchChange, searchText }) => {
   );
 };
 
-export default Header;
+export default MobileHeader;
