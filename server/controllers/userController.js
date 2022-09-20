@@ -98,3 +98,5 @@ exports.deleteUser = (req, res) => {
       res.status(400).send(`Error deleting User ${error}`);
     });
 };
+
+exports.updateUserInfo = (req, res) => {};
