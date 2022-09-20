@@ -42,7 +42,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Header />
         <SlideRoutes location={location}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/:parkId" element={<ParkDetails />} />
           <Route path="/favourites" element={<Favourites />} />

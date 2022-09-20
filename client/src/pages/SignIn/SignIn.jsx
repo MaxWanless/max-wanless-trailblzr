@@ -25,7 +25,6 @@ function SignIn() {
     axios
       .post("http://localhost:5050/users/login", userInfo)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           sessionStorage.setItem(
             "authorization",
