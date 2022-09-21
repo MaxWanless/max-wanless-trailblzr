@@ -6,7 +6,8 @@ import ParkList from "../../ParkList/ParkList";
 import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
 
 const DesktopDashboard = ({
-  handleChange,
+  handleOpenParkDetails,
+  handleCloseParkDetails,
   displayParkDetails,
   parks,
   currentPark,
@@ -15,13 +16,21 @@ const DesktopDashboard = ({
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1 }}>
       <Grid item md={6}>
-        <ParkList parks={parks} handleChange={handleChange} />
+        <ParkList parks={parks} handleChange={handleOpenParkDetails} />
       </Grid>
-      <Grid item md={6} ref={slideRef}>
-        <ParkDetailsCard
-          handleChange={handleChange}
-          currentPark={currentPark}
-        />
+      <Grid item md={6} ref={slideRef} sx={{ overflow: "hidden" }}>
+        <Slide
+          direction="right"
+          in={displayParkDetails}
+          container={slideRef.current}
+        >
+          <Box sx={{ overflow: "hidden" }}>
+            <ParkDetailsCard
+              handleChange={handleCloseParkDetails}
+              currentPark={currentPark}
+            />
+          </Box>
+        </Slide>
       </Grid>
     </Grid>
   );

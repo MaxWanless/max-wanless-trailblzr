@@ -5,7 +5,8 @@ import ParkList from "../../ParkList/ParkList";
 import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
 
 const MobileDashboard = ({
-  handleChange,
+  handleOpenParkDetails,
+  handleCloseParkDetails,
   displayParkDetails,
   parks,
   currentPark,
@@ -18,7 +19,7 @@ const MobileDashboard = ({
     >
       <Slide direction="right" in={!displayParkDetails}>
         <Box>
-          <ParkList parks={parks} handleChange={handleChange} />
+          <ParkList parks={parks} handleChange={handleOpenParkDetails} />
         </Box>
       </Slide>
       <Slide
@@ -28,7 +29,7 @@ const MobileDashboard = ({
       >
         <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
           <ParkDetailsCard
-            handleChange={handleChange}
+            handleChange={handleCloseParkDetails}
             currentPark={currentPark}
           />
         </Box>

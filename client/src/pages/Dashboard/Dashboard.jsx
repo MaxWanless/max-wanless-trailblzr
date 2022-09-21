@@ -27,11 +27,14 @@ function Dashboard() {
       });
   }, []);
 
-  const handleDisplayParkDetails = (park) => {
-    setDisplayParkDetails(!displayParkDetails);
-    if (!displayParkDetails) {
-      setCurrentPark(park);
-    }
+  const handleOpenParkDetails = (park) => {
+    setDisplayParkDetails(true);
+    setCurrentPark(park);
+  };
+
+  const handleCloseParkDetails = () => {
+    setDisplayParkDetails(false);
+    setCurrentPark({});
   };
 
   if (loading) {
@@ -42,14 +45,16 @@ function Dashboard() {
     <Container maxWidth="lg" sx={{ height: "100%" }}>
       {mobileView ? (
         <MobileDashboard
-          handleChange={handleDisplayParkDetails}
+          handleOpenParkDetails={handleOpenParkDetails}
+          handleCloseParkDetails={handleCloseParkDetails}
           displayParkDetails={displayParkDetails}
           parks={parks}
           currentPark={currentPark}
         />
       ) : (
         <DesktopDashboard
-          handleChange={handleDisplayParkDetails}
+          handleOpenParkDetails={handleOpenParkDetails}
+          handleCloseParkDetails={handleCloseParkDetails}
           displayParkDetails={displayParkDetails}
           parks={parks}
           currentPark={currentPark}
