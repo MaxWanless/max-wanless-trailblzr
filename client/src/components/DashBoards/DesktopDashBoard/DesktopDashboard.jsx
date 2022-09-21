@@ -30,7 +30,7 @@ const DesktopDashboard = ({
           in={!displayParkDetails}
           container={slideRef.current}
         >
-          <Box sx={{ overflow: "hidden" }}>
+          <Box sx={{ overflow: "hidden", height: "100%" }}>
             <Map />
           </Box>
         </Slide>
