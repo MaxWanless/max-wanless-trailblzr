@@ -5,18 +5,21 @@ This project was completed as my capstone for the BrainStation Web-Development b
 ## Table of Contents
 
 - [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Screenshots](#screenshots)
 - [Installation Instructions](#installation-instructions)
+- [Next Steps](#next-steps)
 - [Contact Me](#contact)
 
 ## Tech Stack
 
 ### Front-End
 
--React
--SASS
--Axios
--JWT-Decode
--Material UI
+- React
+- SASS
+- Axios
+- JWT-Decode
+- Material UI
 
 ### Back-End
 
@@ -28,13 +31,30 @@ This project was completed as my capstone for the BrainStation Web-Development b
 - bcrypt
 - REST API
 
+## Features
+
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Screenshots
+
+- Screenshot 1
+- Screenshot 2
+- Screenshot 3
+
 ## Installation Instructions
 
 - `npm run i` in root folder.
 - `npm run dev` in root folder.
 - If port is already in use, use command `killall -9 node` and start again.
 
+## Next Steps
+
+- Planned feature 1
+- Planned feature 2
+
 ## Contact
 
-Please feel free to connect with me on:
+If you have any questions regarding this project please feel free to reach out to me:
 LinkedIn: https://www.linkedin.com/in/maxwanless/
