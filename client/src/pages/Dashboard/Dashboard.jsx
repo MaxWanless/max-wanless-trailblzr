@@ -1,16 +1,19 @@
-import { Container, Slide, Box } from "@mui/material";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "@emotion/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Container from "@mui/material/Container";
 import axios from "axios";
-import ParkList from "../../components/ParkList/ParkList";
-import ParkDetailsCard from "../../components/ParkDetailsCard/ParkDetailsCard";
+import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
+import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Dashboard.scss";
 
 function Dashboard() {
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(true);
   const [parks, setParks] = useState(true);
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
   const [currentPark, setCurrentPark] = useState({});
-  const mobileRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -23,7 +26,7 @@ function Dashboard() {
         console.log(error);
       });
   }, []);
-  
+
   const handleDisplayParkDetails = (park) => {
     setDisplayParkDetails(!displayParkDetails);
     if (!displayParkDetails) {
@@ -37,28 +40,21 @@ function Dashboard() {
 
   return (
     <Container maxWidth="lg" sx={{ height: "100%" }}>
-      <Box
-        ref={mobileRef}
-        sx={{ position: "relative", display: { xs: "block", md: "none" } }}
-      >
-        <Slide direction="right" in={!displayParkDetails}>
-          <Box>
-            <ParkList parks={parks} handleChange={handleDisplayParkDetails} />
-          </Box>
-        </Slide>
-        <Slide
-          direction="left"
-          in={displayParkDetails}
-          container={mobileRef.current}
-        >
-          <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
-            <ParkDetailsCard
-              handleChange={handleDisplayParkDetails}
-              currentPark={currentPark}
-            />
-          </Box>
-        </Slide>
-      </Box>
+      {mobileView ? (
+        <MobileDashboard
+          handleChange={handleDisplayParkDetails}
+          displayParkDetails={displayParkDetails}
+          parks={parks}
+          currentPark={currentPark}
+        />
+      ) : (
+        <DesktopDashboard
+          handleChange={handleDisplayParkDetails}
+          displayParkDetails={displayParkDetails}
+          parks={parks}
+          currentPark={currentPark}
+        />
+      )}
     </Container>
   );
 }
