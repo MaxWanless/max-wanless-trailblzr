@@ -47,7 +47,7 @@ const ParkListCard = ({ park, handleChange }) => {
           </Box>
           <Box>
             <Typography variant="h4">TRAILS</Typography>
-            <Typography variant="body2">{park.NumberOfTrails}</Typography>
+            <Typography variant="body2">{park.trailCount}</Typography>
           </Box>
         </Box>
       </StyledCardContent>

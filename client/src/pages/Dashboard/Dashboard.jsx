@@ -23,6 +23,7 @@ function Dashboard() {
         console.log(error);
       });
   }, []);
+  
   const handleDisplayParkDetails = (park) => {
     setDisplayParkDetails(!displayParkDetails);
     if (!displayParkDetails) {

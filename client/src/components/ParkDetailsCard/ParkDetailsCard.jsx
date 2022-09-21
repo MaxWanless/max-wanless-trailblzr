@@ -1,54 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import { Navigate } from "react-router-dom";
-import {
-  Avatar,
-  Card,
-  CardContent,
-  IconButton,
-  Tooltip,
-  Typography,
-  Box,
-  Divider,
-  Tabs,
-  Tab,
-  Snackbar,
-  Button,
-  Slide,
-} from "@mui/material";
+import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Snackbar from "@mui/material/Snackbar";
+import Button from "@mui/material/Button";
+import Slide from "@mui/material/Slide";
+import Skeleton from "@mui/material/Skeleton";
 import SwipeableViews from "react-swipeable-views";
 import parksIcon from "../../assets/logos/parks-logo.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
-import "./ParkDetailsCard.scss";
 import ParkDetailsTab from "../DetailsTabs/ParkDetailsTab/ParkDetailsTab";
 import ParkHighlightsTab from "../DetailsTabs/ParkHighlightsTab/ParkHighlightsTab";
 import ParkTrailsTab from "../DetailsTabs/ParkTrailsTab/ParkTrailsTab";
+import "./ParkDetailsCard.scss";
 
 const ParkDetailsCard = ({ handleChange, currentPark }) => {
   const theme = useTheme();
+  const [activePark, setActivePark] = useState({});
   const [activeTab, setActiveTab] = useState(0);
   const [openSnack, setOpenSnack] = useState(false);
   const [navFavourites, setNavFavourites] = useState(false);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5050/parks/${currentPark.id}`)
+  //     .then((response) => {
+  //       setActivePark(response.data);
+  //     });
+  // }, [currentPark]);
+
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
+
   const handleTabSwipe = (index) => {
     setActiveTab(index);
   };
+
   const handleOpen = () => {
     setOpenSnack(true);
   };
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnack(false);
   };
+
   const slideDown = (props) => {
     return <Slide {...props} direction="down" />;
   };
+
   const handleNavFavoutites = () => {
     setNavFavourites(true);
   };
@@ -56,6 +71,7 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
   if (navFavourites) {
     return <Navigate to="/favourites" />;
   }
+
   return (
     <>
       <Card
@@ -94,9 +110,7 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
             </Box>
             <Box>
               <Typography variant="h4">TRAILS</Typography>
-              <Typography variant="body2">
-                {currentPark.NumberOfTrails}
-              </Typography>
+              <Typography variant="body2">{currentPark.trailCount}</Typography>
             </Box>
           </Box>
         </CardContent>
@@ -118,12 +132,13 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
               dir={theme.direction}
               currentPark={currentPark}
             />
-            <ParkHighlightsTab
-              value={activeTab}
-              index={0}
-              dir={theme.direction}
-              currentPark={currentPark}
-            />
+            <Box value={activeTab} index={0} dir={theme.direction}>
+              {currentPark ? (
+                <ParkHighlightsTab currentPark={currentPark} />
+              ) : (
+                <Skeleton variant="rounded" width={"100%"} height={"7rem"} />
+              )}
+            </Box>
             <ParkTrailsTab
               value={activeTab}
               index={1}
