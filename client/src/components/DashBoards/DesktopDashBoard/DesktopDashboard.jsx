@@ -4,6 +4,7 @@ import Slide from "@mui/material/Slide";
 import Grid from "@mui/material/Grid";
 import ParkList from "../../ParkList/ParkList";
 import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
+import Map from "../../Map/Map";
 
 const DesktopDashboard = ({
   handleOpenParkDetails,
@@ -18,13 +19,32 @@ const DesktopDashboard = ({
       <Grid item md={6}>
         <ParkList parks={parks} handleChange={handleOpenParkDetails} />
       </Grid>
-      <Grid item md={6} ref={slideRef} sx={{ overflow: "hidden" }}>
+      <Grid
+        item
+        md={6}
+        ref={slideRef}
+        sx={{ overflow: "hidden", position: "relative" }}
+      >
+        <Slide
+          direction="left"
+          in={!displayParkDetails}
+          container={slideRef.current}
+        >
+          <Box sx={{ overflow: "hidden" }}>
+            <Map />
+          </Box>
+        </Slide>
+
         <Slide
           direction="right"
           in={displayParkDetails}
           container={slideRef.current}
         >
-          <Box sx={{ overflow: "hidden" }}>
+          <Box
+            sx={{
+              overflow: "hidden",
+            }}
+          >
             <ParkDetailsCard
               handleChange={handleCloseParkDetails}
               currentPark={currentPark}
