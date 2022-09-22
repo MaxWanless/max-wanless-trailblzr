@@ -11,16 +11,16 @@ function Dashboard({ parks }) {
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
-  const [currentPark, setCurrentPark] = useState({});
+  const [currentParkID, setCurrentParkID] = useState("");
 
-  const handleOpenParkDetails = (park) => {
+  const handleOpenParkDetails = (parkID) => {
     setDisplayParkDetails(true);
-    setCurrentPark(park);
+    setCurrentParkID(parkID);
   };
 
   const handleCloseParkDetails = () => {
     setDisplayParkDetails(false);
-    setCurrentPark({});
+    setCurrentParkID("");
   };
 
   return (
@@ -31,7 +31,7 @@ function Dashboard({ parks }) {
           handleCloseParkDetails={handleCloseParkDetails}
           displayParkDetails={displayParkDetails}
           parks={parks}
-          currentPark={currentPark}
+          currentParkID={currentParkID}
         />
       ) : (
         <DesktopDashboard
@@ -39,7 +39,7 @@ function Dashboard({ parks }) {
           handleCloseParkDetails={handleCloseParkDetails}
           displayParkDetails={displayParkDetails}
           parks={parks}
-          currentPark={currentPark}
+          currentParkID={currentParkID}
         />
       )}
     </Container>

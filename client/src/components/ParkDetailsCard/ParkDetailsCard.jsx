@@ -16,7 +16,9 @@ import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
 import Skeleton from "@mui/material/Skeleton";
-import SwipeableViews from "react-swipeable-views";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import parksIcon from "../../assets/logos/parks-logo.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
@@ -26,50 +28,53 @@ import ParkHighlightsTab from "../DetailsTabs/ParkHighlightsTab/ParkHighlightsTa
 import ParkTrailsTab from "../DetailsTabs/ParkTrailsTab/ParkTrailsTab";
 import "./ParkDetailsCard.scss";
 
-const ParkDetailsCard = ({ handleChange, currentPark }) => {
+const ParkDetailsCard = ({ handleChange, currentParkID }) => {
   const theme = useTheme();
-  const [activePark, setActivePark] = useState({});
-  const [activeTab, setActiveTab] = useState(0);
-  const [openSnack, setOpenSnack] = useState(false);
+  // const [openSnack, setOpenSnack] = useState(false);
+  const [currentPark, setCurrentPark] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("0");
   const [navFavourites, setNavFavourites] = useState(false);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5050/parks/${currentPark.id}`)
-  //     .then((response) => {
-  //       setActivePark(response.data);
-  //     });
-  // }, [currentPark]);
+  if (currentParkID) {
+    axios
+      .get(`http://localhost:5050/parks/${currentParkID}`)
+      .then((response) => {
+        setCurrentPark(response.data);
+        setIsLoading(false);
+      });
+  }
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
 
-  const handleTabSwipe = (index) => {
-    setActiveTab(index);
-  };
+  // const handleOpen = () => {
+  //   setOpenSnack(true);
+  // };
 
-  const handleOpen = () => {
-    setOpenSnack(true);
-  };
+  // const handleClose = (event, reason) => {
+  //   if (reason === "clickaway") {
+  //     return;
+  //   }
+  //   setOpenSnack(false);
+  // };
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenSnack(false);
-  };
+  // const slideDown = (props) => {
+  //   return <Slide {...props} direction="down" />;
+  // };
+  // const handleNavFavoutites = () => {
+  //   setNavFavourites(true);
+  // };
 
-  const slideDown = (props) => {
-    return <Slide {...props} direction="down" />;
-  };
-
-  const handleNavFavoutites = () => {
-    setNavFavourites(true);
-  };
+  const handleSubmitFavourite = () => {};
 
   if (navFavourites) {
     return <Navigate to="/favourites" />;
+  }
+
+  if (isLoading) {
+    return <div>...Loading</div>;
   }
 
   return (
@@ -91,7 +96,7 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
               sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
             >
               <Tooltip title="Favourite">
-                <IconButton onClick={handleOpen}>
+                <IconButton onClick={handleSubmitFavourite}>
                   <BookmarkBorderIcon />
                 </IconButton>
               </Tooltip>
@@ -110,45 +115,33 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
             </Box>
             <Box>
               <Typography variant="h4">TRAILS</Typography>
-              <Typography variant="body2">{currentPark.trailCount}</Typography>
+              <Typography variant="body2">
+                {currentPark.trails.length}
+              </Typography>
             </Box>
           </Box>
         </CardContent>
         <Divider />
         <CardContent sx={{ backgroundColor: "#e0e5dd", height: "100%" }}>
-          <Tabs value={activeTab} onChange={handleTabChange} centered>
-            <Tab label="Details" />
-            <Tab label="Highlights" />
-            <Tab label="Trails" />
-          </Tabs>
-          <SwipeableViews
-            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-            index={activeTab}
-            onChangeIndex={handleTabSwipe}
-          >
-            <ParkDetailsTab
-              value={activeTab}
-              index={2}
-              dir={theme.direction}
-              currentPark={currentPark}
-            />
-            <Box value={activeTab} index={0} dir={theme.direction}>
-              {currentPark ? (
-                <ParkHighlightsTab currentPark={currentPark} />
-              ) : (
-                <Skeleton variant="rounded" width={"100%"} height={"7rem"} />
-              )}
-            </Box>
-            <ParkTrailsTab
-              value={activeTab}
-              index={1}
-              dir={theme.direction}
-              currentPark={currentPark}
-            />
-          </SwipeableViews>
+          <TabContext value={activeTab} sx={{ padding: "0" }}>
+            <TabList onChange={handleTabChange} centered>
+              <Tab label="Details" value="2" />
+              <Tab label="Highlights" value="0" />
+              <Tab label="Trails" value="1" />
+            </TabList>
+            <TabPanel value="2" sx={{ padding: "0" }}>
+              <ParkDetailsTab currentPark={currentPark} />
+            </TabPanel>
+            <TabPanel value="0" sx={{ padding: "0" }}>
+              <ParkHighlightsTab currentPark={currentPark} />
+            </TabPanel>
+            <TabPanel value="1" sx={{ padding: "0" }}>
+              <ParkTrailsTab />
+            </TabPanel>
+          </TabContext>
         </CardContent>
       </Card>
-      <Snackbar
+      {/* <Snackbar
         open={openSnack}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -160,7 +153,7 @@ const ParkDetailsCard = ({ handleChange, currentPark }) => {
             Open
           </Button>
         }
-      ></Snackbar>
+      ></Snackbar> */}
     </>
   );
 };

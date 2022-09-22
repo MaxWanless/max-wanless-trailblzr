@@ -9,7 +9,7 @@ const MobileDashboard = ({
   handleCloseParkDetails,
   displayParkDetails,
   parks,
-  currentPark,
+  currentParkID,
 }) => {
   const mobileRef = React.useRef(null);
   return (
@@ -30,7 +30,7 @@ const MobileDashboard = ({
         <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
           <ParkDetailsCard
             handleChange={handleCloseParkDetails}
-            currentPark={currentPark}
+            currentParkID={currentParkID}
           />
         </Box>
       </Slide>

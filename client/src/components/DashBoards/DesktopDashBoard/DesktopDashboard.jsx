@@ -11,7 +11,7 @@ const DesktopDashboard = ({
   handleCloseParkDetails,
   displayParkDetails,
   parks,
-  currentPark,
+  currentParkID,
 }) => {
   const slideRef = React.useRef(null);
   return (
@@ -47,7 +47,7 @@ const DesktopDashboard = ({
           >
             <ParkDetailsCard
               handleChange={handleCloseParkDetails}
-              currentPark={currentPark}
+              currentPark={currentParkID}
             />
           </Box>
         </Slide>

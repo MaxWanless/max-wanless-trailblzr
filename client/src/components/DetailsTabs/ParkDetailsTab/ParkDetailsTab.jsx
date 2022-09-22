@@ -20,11 +20,13 @@ const ParkDetailsTab = ({ currentPark }) => {
         </Box>
         <Box>
           <Typography variant="h4">ESTABLISHED</Typography>
-          <Typography variant="body2">{currentPark.established}</Typography>
+          <Typography variant="body2">
+            {currentPark.info.established}
+          </Typography>
         </Box>
         <Box>
           <Typography variant="h4">PHONE</Typography>
-          <Typography variant="body2">{currentPark.phone}</Typography>
+          <Typography variant="body2">{currentPark.info.phone}</Typography>
         </Box>
       </Box>
       {/* Details Bottom Row */}
@@ -38,11 +40,11 @@ const ParkDetailsTab = ({ currentPark }) => {
       >
         <Box sx={{ mr: "1rem", width: "150px" }}>
           <Typography variant="h4">ADDRESS</Typography>
-          <Typography variant="body2">{currentPark.address}</Typography>
+          <Typography variant="body2">{currentPark.info.address}</Typography>
         </Box>
         <Box sx={{ mr: "1rem" }}>
           <Typography variant="h4">SOCIAL</Typography>
-          <IconButton size="small" type="a" href={currentPark.social}>
+          <IconButton size="small" type="a" href={currentPark.info.social}>
             <FacebookIcon fontSize="large" />
           </IconButton>
         </Box>

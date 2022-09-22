@@ -6,7 +6,8 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.3",
-    "@mui/material": "^5.10.5",
+    "@mui/lab": "^5.0.0-alpha.100",
+    "@mui/material": "^5.10.6",
     "@react-google-maps/api": "^2.12.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -20,7 +21,6 @@
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "react-slide-routes": "^2.0.0",
-    "react-swipeable-views": "^0.14.0",
     "sass": "^1.54.9",
     "web-vitals": "^2.1.4"
   },

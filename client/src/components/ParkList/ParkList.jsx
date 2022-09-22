@@ -5,7 +5,6 @@ import "./ParkList.scss";
 const ParkList = ({ parks, handleChange }) => {
   return (
     <Container
-      className="PoopJunior"
       disableGutters
       sx={{ maxHeight: "100%", overflow: "auto" }}
     >
