@@ -10,22 +10,27 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 import "./Account.scss";
 
 const ModalStyle = {
   position: "absolute",
-  top: "30%",
+  top: "40%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
   boxShadow: 24,
   p: 4,
+  width: "343px",
+  padding: "1rem",
 };
 
 function Account() {
   const [signOut, setSignOut] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [updateInfoSuccess, setUpdateInfoSuccess] = useState(false);
+  const [enableEdit, setEnableEdit] = useState(true);
   let token = "";
   let decodedUser = {};
 
@@ -40,6 +45,8 @@ function Account() {
 
   const handleSignOut = () => {
     sessionStorage.removeItem("authorization");
+    localStorage.removeItem("authorization");
+    setEnableEdit(true);
     setSignOut(true);
   };
 
@@ -69,6 +76,10 @@ function Account() {
     });
   };
 
+  const handleEditUser = () => {
+    setEnableEdit(!enableEdit);
+  };
+
   if (updateInfoSuccess) {
     return <Navigate to="/dashboard" />;
   }
@@ -81,7 +92,20 @@ function Account() {
     <Container maxWidth="xs">
       <Card sx={{ marginTop: "10vh" }}>
         <CardContent>
-          <Typography variant="h2">Account</Typography>
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
+            <Typography variant="h2" sx={{ flexGrow: 1 }}>
+              Account
+            </Typography>
+
+            <IconButton
+              sx={{ justifySelf: "flex-end" }}
+              onClick={handleEditUser}
+            >
+              <EditIcon />
+            </IconButton>
+          </Box>
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
               label="First Name"
@@ -91,6 +115,7 @@ function Account() {
               size="small"
               margin="normal"
               defaultValue={decodedUser.firstName}
+              disabled={enableEdit}
               fullWidth
             />
             <TextField
@@ -101,6 +126,7 @@ function Account() {
               size="small"
               margin="normal"
               defaultValue={decodedUser.lastName}
+              disabled={enableEdit}
               fullWidth
             />
             <TextField
@@ -112,6 +138,7 @@ function Account() {
               margin="normal"
               fullWidth
               defaultValue={decodedUser.email}
+              disabled={enableEdit}
               autoComplete="email"
             />
             <TextField
@@ -123,12 +150,14 @@ function Account() {
               margin="normal"
               fullWidth
               defaultValue={decodedUser.userName}
+              disabled={enableEdit}
               autoComplete="username"
             />
             <Button
               type="submit"
               variant="contained"
               fullWidth
+              disabled={enableEdit}
               sx={{ marginTop: "0.5rem" }}
             >
               Update information
@@ -138,6 +167,7 @@ function Account() {
             variant="contained"
             fullWidth
             onClick={handleOpenDeleteModalAccount}
+            disabled={enableEdit}
             sx={{ marginTop: "1rem" }}
           >
             delete account
