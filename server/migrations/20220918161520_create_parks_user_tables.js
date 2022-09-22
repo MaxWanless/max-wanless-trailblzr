@@ -39,6 +39,7 @@ exports.up = function (knex) {
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("favourites", (table) => {
+      table.increments("id").primary();
       table
         .string("parkID")
         .notNullable()

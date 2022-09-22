@@ -97,4 +97,80 @@ exports.deleteUser = (req, res) => {
     });
 };
 
+exports.favouritesList = (req, res) => {
+  knex("favourites")
+    .where({ userID: req.params.id })
+    .then((data) => {
+      res.status(200).json(data);
+    });
+};
+
+exports.addFavourite = (req, res) => {
+  let { parkID } = req.body;
+
+  knex("favourites")
+    .where("userID", req.params.id)
+    .where("parkID", parkID)
+    .then((data) => {
+      if (!data.length) {
+        knex("favourites")
+          .insert({ parkID: parkID, userID: req.params.id })
+          .then((data) => {
+            res.status(201).json({
+              message: "Successfully Added to favourites",
+              data,
+            });
+          })
+          .catch((error) => {
+            res
+              .status(400)
+              .json({ message: "Issue Adding Favourite", error: error });
+          });
+      } else {
+        res.status(400).json({ message: "Favourite already exists" });
+      }
+    })
+    .catch((error) => {
+      res.status(400).json({
+        message: "Ran into issue adding to favourites",
+        erorr: error,
+      });
+    });
+};
+
+exports.removeFavourite = (req, res) => {
+  let { parkID } = req.body;
+
+  knex("favourites")
+    .where("userID", req.params.id)
+    .where("parkID", parkID)
+    .then((data) => {
+      if (data.length) {
+        knex("favourites")
+          .delete()
+          .where({ parkID: parkID })
+          .where({ userID: req.params.id })
+          .then((data) => {
+            res.status(201).json({
+              message: "Successfully removed favourite",
+              data,
+            });
+          })
+          .catch((error) => {
+            res
+              .status(400)
+              .json({ message: "Issue removing Favourite", error: error });
+          });
+      } else {
+        res.status(400).json({ message: "Park Not in favourites" });
+      }
+    })
+    .catch((error) => {
+      res.status(400).json({
+        message: "Ran into issue removing from favourites",
+        erorr: error,
+      });
+    });
+};
+
 exports.updateUserInfo = (req, res) => {};
