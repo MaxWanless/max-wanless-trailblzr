@@ -98,35 +98,23 @@ exports.deleteUser = (req, res) => {
 };
 
 exports.favouritesList = (req, res) => {
-  let favourites = [];
-  knex("favourites")
+  knex("user_favourites")
     .pluck("parkID")
     .where({ userID: req.params.id })
     .then((data) => {
-      favourites = data;
-    })
-    .then(() => {
-      knex
-        .raw(
-          "select parks.*,  count(parktrails.parkID) As trailCount From parktrails left join parks on parktrails.parkID = parks.id group by parks.id"
-        )
-        .then((data) => {
-          res
-            .status(200)
-            .json(data[0].filter((park) => favourites.includes(park.id)));
-        });
+      res.status(200).send(data);
     });
 };
 
 exports.addFavourite = (req, res) => {
   let { parkID } = req.body;
 
-  knex("favourites")
+  knex("user_favourites")
     .where("userID", req.params.id)
     .where("parkID", parkID)
     .then((data) => {
       if (!data.length) {
-        knex("favourites")
+        knex("user_favourites")
           .insert({ parkID: parkID, userID: req.params.id })
           .then((data) => {
             res.status(201).json({
@@ -154,12 +142,12 @@ exports.addFavourite = (req, res) => {
 exports.removeFavourite = (req, res) => {
   let { parkID } = req.body;
 
-  knex("favourites")
+  knex("user_favourites")
     .where("userID", req.params.id)
     .where("parkID", parkID)
     .then((data) => {
       if (data.length) {
-        knex("favourites")
+        knex("user_favourites")
           .delete()
           .where({ parkID: parkID })
           .where({ userID: req.params.id })
