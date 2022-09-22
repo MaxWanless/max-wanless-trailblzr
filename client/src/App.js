@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { Route, useLocation } from "react-router-dom";
+import axios from "axios";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
@@ -11,6 +13,8 @@ import Header from "./components/Headers/Header/Header";
 import "./App.scss";
 
 function App() {
+  const [parks, setParks] = useState(true);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const theme = createTheme({
     palette: {
@@ -37,15 +41,32 @@ function App() {
       body2: { fontSize: 13, fontWeight: 400, lineHeight: "1rem" },
     },
   });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5050/parks")
+      .then((response) => {
+        setParks(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>...Loading</div>;
+  }
+
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
         <Header />
         <SlideRoutes location={location}>
           <Route path="/" element={<SignIn />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard parks={parks} />} />
           <Route path="/dashboard/:parkId" element={<ParkDetails />} />
-          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/favourites" element={<Favourites parks={parks} />} />
           <Route path="/account" element={<Account />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

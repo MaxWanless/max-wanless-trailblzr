@@ -5,11 +5,11 @@ import Container from "@mui/material/Container";
 import ParkList from "../../components/ParkList/ParkList";
 import "./Favourites.scss";
 
-function Favourites() {
-  const [parks, setParks] = useState([]);
+function Favourites({ parks }) {
+  const [loading, setLoading] = useState(true);
+  const [favourites, setFavourites] = useState([]);
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
   const [currentPark, setCurrentPark] = useState({});
-  const [loading, setLoading] = useState(true);
   let token = "";
   let decodedUser = {};
 
@@ -24,13 +24,11 @@ function Favourites() {
   useEffect(() => {
     axios
       .get(`http://localhost:5050/users/favourites/${decodedUser.id}`)
-      .then((favouriteList) => {
-        setParks(favouriteList.data);
+      .then((response) => {
+        setFavourites(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   const handleOpenParkDetails = (park) => {
@@ -44,7 +42,10 @@ function Favourites() {
 
   return (
     <Container maxWidth="lg">
-      <ParkList parks={parks} handleChange={handleOpenParkDetails} />
+      <ParkList
+        parks={parks.filter((park) => favourites.includes(park.id))}
+        handleChange={handleOpenParkDetails}
+      />
     </Container>
   );
 }

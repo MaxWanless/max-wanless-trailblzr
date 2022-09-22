@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
@@ -7,25 +7,11 @@ import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileD
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Dashboard.scss";
 
-function Dashboard() {
+function Dashboard({ parks }) {
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
-  const [loading, setLoading] = useState(true);
-  const [parks, setParks] = useState(true);
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
   const [currentPark, setCurrentPark] = useState({});
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5050/parks")
-      .then((response) => {
-        setParks(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   const handleOpenParkDetails = (park) => {
     setDisplayParkDetails(true);
@@ -36,10 +22,6 @@ function Dashboard() {
     setDisplayParkDetails(false);
     setCurrentPark({});
   };
-
-  if (loading) {
-    return <div>...Loading</div>;
-  }
 
   return (
     <Container maxWidth="lg" sx={{ height: "100%" }}>
