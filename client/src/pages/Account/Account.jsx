@@ -34,12 +34,19 @@ function Account() {
   let token = "";
   let decodedUser = {};
 
-  if (!sessionStorage.getItem("authorization") && !signOut) {
+  if (
+    !sessionStorage.getItem("authorization") &&
+    !localStorage.getItem("authorization") &&
+    !signOut
+  ) {
     setSignOut(true);
   }
 
   if (sessionStorage.getItem("authorization")) {
     token = sessionStorage.getItem("authorization").split(" ")[1];
+    decodedUser = jwt_decode(token);
+  } else if (localStorage.getItem("authorization")) {
+    token = localStorage.getItem("authorization").split(" ")[1];
     decodedUser = jwt_decode(token);
   }
 

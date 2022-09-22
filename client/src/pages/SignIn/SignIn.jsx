@@ -14,7 +14,13 @@ import axios from "axios";
 
 function SignIn() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
   const handleChange = (name) => (event) => {};
+
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,10 +32,17 @@ function SignIn() {
       .post("http://localhost:5050/users/login", userInfo)
       .then((response) => {
         if (response.status === 200) {
-          sessionStorage.setItem(
-            "authorization",
-            `Bearer ${response.data.token}`
-          );
+          if (rememberMe) {
+            localStorage.setItem(
+              "authorization",
+              `Bearer ${response.data.token}`
+            );
+          } else {
+            sessionStorage.setItem(
+              "authorization",
+              `Bearer ${response.data.token}`
+            );
+          }
         }
         setIsLoggedIn(true);
       })
@@ -40,6 +53,13 @@ function SignIn() {
 
   if (isLoggedIn) {
     return <Navigate to="/dashboard" />;
+  }
+
+  if (
+    sessionStorage.getItem("authorization") ||
+    localStorage.getItem("authorization")
+  ) {
+    setIsLoggedIn(true);
   }
 
   return (
@@ -78,7 +98,7 @@ function SignIn() {
               onChange={handleChange("password")}
             />
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox onClick={handleRememberMe} />}
               label="Remember Me"
             ></FormControlLabel>
             <Button variant="contained" fullWidth type="submit">
