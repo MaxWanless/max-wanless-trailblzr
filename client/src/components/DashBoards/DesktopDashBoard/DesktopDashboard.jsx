@@ -31,7 +31,7 @@ const DesktopDashboard = ({
           container={slideRef.current}
         >
           <Box sx={{ overflow: "hidden", height: "100%" }}>
-            <Map />
+            <Map parks={parks} />
           </Box>
         </Slide>
 

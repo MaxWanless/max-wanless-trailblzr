@@ -1,8 +1,7 @@
-import { useState } from "react";
 import {
   GoogleMap,
   useLoadScript,
-  Marker,
+  MarkerF,
   InfoWindow,
 } from "@react-google-maps/api";
 import Card from "@mui/material/Card";
@@ -26,12 +25,13 @@ const options = {
   zoomControl: true,
 };
 
-const Map = () => {
+const Map = ({ parks }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
   if (loadError) return <div>Load Error</div>;
+
   if (!isLoaded) return <div>Loading</div>;
 
   return (
@@ -43,15 +43,21 @@ const Map = () => {
           center={center}
           options={options}
         >
-          <Marker
-            position={{ lat: 45.391486, lng: -79.214673 }}
-            icon={{
-              url: `${logo}`,
-              scaledSize: new window.google.maps.Size(30, 30),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-            }}
-          />
+          {parks.map((park) => (
+            <MarkerF
+              key={park.id}
+              icon={{
+                url: `${logo}`,
+                scaledSize: new window.google.maps.Size(30, 30),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+              }}
+              position={{
+                lat: parseFloat(park.lat),
+                lng: parseFloat(park.lng),
+              }}
+            />
+          ))}
         </GoogleMap>
       </CardContent>
     </Card>
