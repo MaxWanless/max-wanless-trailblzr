@@ -30,30 +30,28 @@ exports.register = (req, res) => {
             password: hashedPassword,
           })
           .then((data) => {
+            res.status(201).json({
+              message: "user signed up successfully",
+              data,
+            });
+          })
+          .catch((error) => {
             res
-              .status(201)
-              .json({
-                message: "user signed up successfully",
-                data,
-              })
-              .catch((error) => {
-                res
-                  .status(400)
-                  .json({ message: "Issue signing up user", error: error });
-              });
+              .status(400)
+              .json({ message: "Issue signing up user", error: error });
           });
       } else {
         res
           .status(400)
           .json({ message: "User with that username already exists" });
       }
+    })
+    .catch((error) => {
+      res.status(400).json({
+        message: "Ran into issue signing up user",
+        erorr: error,
+      });
     });
-  // .catch((error) => {
-  //   res.status(400).json({
-  //     message: "Ran into issue signing up user",
-  //     erorr: error,
-  //   });
-  // });
 };
 
 exports.login = (req, res) => {
