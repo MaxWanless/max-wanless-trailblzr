@@ -23,6 +23,7 @@ function Favourites() {
         axios
           .get("http://localhost:5050/parks")
           .then((response) => {
+            console.log(favourites)
             setParks(
               response.data.filter((park) => favourites.includes(park.id))
             );
