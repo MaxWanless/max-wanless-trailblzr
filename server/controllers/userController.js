@@ -99,9 +99,10 @@ exports.deleteUser = (req, res) => {
 
 exports.favouritesList = (req, res) => {
   knex("favourites")
+    .pluck("parkID")
     .where({ userID: req.params.id })
     .then((data) => {
-      res.status(200).json(data);
+      res.status(200).send(data);
     });
 };
 
