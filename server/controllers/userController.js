@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.userList = (req, res) => {
-  knex("users").then((data) => {
+  knex("user").then((data) => {
     res.status(200).json(data);
   });
 };
@@ -17,11 +17,11 @@ exports.register = (req, res) => {
 
   knex
     .select("userName")
-    .from("users")
+    .from("user")
     .where("userName", userName)
     .then((data) => {
       if (!data.length) {
-        return knex("users")
+        return knex("user")
           .insert({
             firstName: firstName,
             lastName: lastName,
@@ -56,7 +56,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res) => {
   const { userName, password } = req.body;
-  knex("users")
+  knex("user")
     .where("userName", userName)
     .then((data) => {
       const passwordCheck = bcrypt.compareSync(password, data[0].password);
@@ -86,7 +86,7 @@ exports.login = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-  knex("users")
+  knex("user")
     .delete()
     .where({ id: req.params.id })
     .then(() => {
