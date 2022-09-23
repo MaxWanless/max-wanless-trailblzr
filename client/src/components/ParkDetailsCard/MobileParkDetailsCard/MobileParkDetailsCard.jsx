@@ -9,7 +9,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import parksIcon from "../../assets/logos/parks-logo.png";
+import parksIcon from "../../../assets/logos/parks-logo.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ParkDetailsTabs from "./ParkDetailsTabs";

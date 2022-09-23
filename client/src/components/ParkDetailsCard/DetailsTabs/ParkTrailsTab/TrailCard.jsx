@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 
 const TrailCard = ({ trail }) => {
+  console.log(trail);
   let difficultyColor = "";
   if (trail.difficulty === "easy") {
     difficultyColor = "success";
@@ -26,9 +27,7 @@ const TrailCard = ({ trail }) => {
           variant="outlined"
         />
       </Box>
-      <Typography sx={{ height: "100%", overflowY: "scroll" }}>
-        {trail.description}
-      </Typography>
+      <Typography sx={{ height: "100%" }}>{trail.description}</Typography>
     </Box>
   );
 };

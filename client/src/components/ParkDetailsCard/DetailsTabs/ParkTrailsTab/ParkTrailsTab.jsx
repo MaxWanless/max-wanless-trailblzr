@@ -4,7 +4,9 @@ import TrailCard from "./TrailCard";
 const ParkTrailsTab = ({ currentPark }) => {
   return (
     <Box>
-      <TrailCard trail={currentPark.trails[0]} />
+      {currentPark.trails?.map((trail) => (
+        <TrailCard trail={trail} />
+      ))}
     </Box>
   );
 };
