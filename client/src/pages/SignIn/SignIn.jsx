@@ -1,5 +1,5 @@
-import { Link, Navigate } from "react-router-dom";
 import { useState, forwardRef } from "react";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -55,10 +55,14 @@ function SignIn() {
         }
         setIsLoggedIn(true);
       })
-      .catch((error) => {
-        setLoginError({ error: true, message: error.response.data.message });
-      });
+      .catch((error) =>
+        setLoginError({ error: true, message: error.response.data.message })
+      );
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
+  }
 
   if (
     sessionStorage.getItem("authorization") ||
@@ -66,11 +70,7 @@ function SignIn() {
   ) {
     setIsLoggedIn(true);
   }
-
-  if (isLoggedIn) {
-    return <Navigate to="/dashboard" />;
-  }
-
+  
   return (
     <Container
       maxWidth="xs"
