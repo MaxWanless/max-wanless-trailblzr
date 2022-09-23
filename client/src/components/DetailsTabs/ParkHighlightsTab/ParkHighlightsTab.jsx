@@ -1,11 +1,18 @@
 import { Box, List, ListItem } from "@mui/material";
 import "./ParkHighlightsTab.scss";
 
-const ParkHighlightsTab = () => {
+const ParkHighlightsTab = ({ currentPark }) => {
   return (
     <Box>
-      <List>
-        <ListItem sx={{ display: "list-item" }}>Highlight</ListItem>
+      <List sx={{ listStyleType: "disc", pl: 2 }}>
+        {currentPark.highlights.map((highlight, index) => (
+          <ListItem
+            key={index}
+            sx={{ display: "list-item", paddingLeft: "0", paddingRight: "0" }}
+          >
+            {highlight}
+          </ListItem>
+        ))}
       </List>
     </Box>
   );

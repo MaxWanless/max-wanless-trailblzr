@@ -1,8 +1,12 @@
-import { Box } from "@mui/material";
-import "./ParkTrailsTab.scss";
+import Box from "@mui/material/Box";
+import TrailCard from "./TrailCard";
 
-const ParkTrailsTab = ({ park }) => {
-  return <Box>Trails</Box>;
+const ParkTrailsTab = ({ currentPark }) => {
+  return (
+    <Box>
+      <TrailCard trail={currentPark.trails[0]} />
+    </Box>
+  );
 };
 
 export default ParkTrailsTab;
