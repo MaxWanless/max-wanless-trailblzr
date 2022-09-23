@@ -1,5 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
+import axios from "axios";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -9,17 +10,25 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import "./SignIn.scss";
-import axios from "axios";
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function SignIn() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
-  const handleChange = (name) => (event) => {};
+  const [loginError, setLoginError] = useState({ error: false, message: "" });
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
+  };
+
+  const handleCloseSnack = () => {
+    setLoginError({ error: false, message: "" });
   };
 
   const handleSubmit = (event) => {
@@ -47,19 +56,19 @@ function SignIn() {
         setIsLoggedIn(true);
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        setLoginError({ error: true, message: error.response.data.message });
       });
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/dashboard" />;
-  }
 
   if (
     sessionStorage.getItem("authorization") ||
     localStorage.getItem("authorization")
   ) {
     setIsLoggedIn(true);
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
   }
 
   return (
@@ -83,7 +92,6 @@ function SignIn() {
               margin="normal"
               fullWidth
               autoComplete="username"
-              onChange={handleChange("userName")}
             />
             <TextField
               label="Password"
@@ -95,7 +103,6 @@ function SignIn() {
               fullWidth
               type="password"
               autoComplete="current-password"
-              onChange={handleChange("password")}
             />
             <FormControlLabel
               control={<Checkbox onClick={handleRememberMe} />}
@@ -110,6 +117,23 @@ function SignIn() {
           </Typography>
         </CardContent>
       </Card>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={loginError.error}
+        onClose={handleCloseSnack}
+        autoHideDuration={3000}
+      >
+        <Alert
+          severity="error"
+          onClose={handleCloseSnack}
+          sx={{ width: "100%" }}
+        >
+          {loginError.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
