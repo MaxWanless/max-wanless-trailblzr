@@ -173,5 +173,103 @@
     "length": "3 km",
     "difficulty": "moderate",
     "description": "The Walks of the Little Bonnechere River is a compilation of 10 local trails and stopping places which will help you gain an understanding of the history of the river and its people. Each trail offers a variety of experiences and opportunities to explore natural and cultural history. Trail length and difficulty vary, providing an opportunity for all to enjoy."
+  },
+  {
+    "parkID": "e9f948c1-8b07-491c-a4d7-549e8df50c35",
+    "name": "Lookout Bluff Trail",
+    "length": "2.2 km",
+    "difficulty": "easy",
+    "description": "Hike from the park office to the edge of the bluff overlooking Long Point Bay and return."
+  },
+  {
+    "parkID": "e9f948c1-8b07-491c-a4d7-549e8df50c35",
+    "name": "Fin & Feather Trail",
+    "length": "4.0 km",
+    "difficulty": "medium",
+    "description": "Begin at the north end of the Fin & Feather Campground and hike along the old hatchery pond to the Normandale Fish Hatchery, around to the north boundary of the park and then retrace the trail back into the park."
+  },
+  {
+    "parkID": "e9f948c1-8b07-491c-a4d7-549e8df50c35",
+    "name": "Oak Savanna Trail",
+    "length": "1.0 km",
+    "difficulty": "easy",
+    "description": "This trail is located just east of the Whippoorwill Campground and takes you through an area of plantation and naturally forested areas that have had controlled fires (prescribed burns) to return the area to a natural oak and pine forest cover."
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Whiskey Rapids",
+    "length": "2.1 km",
+    "difficulty": "moderate",
+    "description": "This looped trail leads along the Oxtongue River to scenic Whiskey Rapids. The trail guide discusses the ecology and history of an Algonquin river."
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Hardwood Lookout",
+    "length": "0.8 km",
+    "difficulty": "moderate",
+    "description": "This walk introduces the visitor to the ecology of a typical Algonquin hardwood forest and culminates in a fine view of Smoke Lake and the surrounding hills."
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Centennial Ridges",
+    "length": "10 km",
+    "difficulty": "dificult",
+    "description": "This demanding loop rewards the hiker with spectacular viewing along two high ridges."
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Hemlock Bluff",
+    "length": "3.5 km",
+    "difficulty": "moderate.",
+    "description": "This trail leads through a mixed forest to an impressive view of Jack Lake."
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Spruce Bog Boardwalk",
+    "length": "1.5 km",
+    "difficulty": "easy",
+    "description": "Several boardwalk sections in the looped trail give you an excellent close-up look of two typical northern Black Spruce bogs. The trail is located right off of the Highway 60 corridor, making it very accessible for bird watching."
+  },
+  {
+    "parkID": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "name": "Swan Lake Trail",
+    "length": "1.5 km",
+    "difficulty": "difficult",
+    "description": "Wind through a special area in the park which is protected as a nature reserve. This short hike crosses rocky ridges and lookouts as well as a variety of interesting wetlands. The centerpiece of the trail includes a boardwalk, where wetland plants and animals can be studied. While there, be sure to watch for the Great Blue Heron, beaver, waterfowl, bitterns and other varieties of birds, reptiles, amphibians, fish, deer, moose and carnivorous plants."
+  },
+  {
+    "parkID": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "name": "Gut Lake Trail",
+    "length": "2.5 km",
+    "difficulty": "difficult",
+    "description": "For some, this is the most popular trail in the park. It travels by two different areas: the rugged rock of the Precambrian Shield (which supports most of the life in this area), and the lakes, streams and wetlands (which drain excess water into Georgian Bay). There are many points that are ideal for photos, rest stops or a picnic. If you walk quietly, you may see Great Blue Heron, other birds, amphibians, fox, deer and moose."
+  },
+  {
+    "parkID": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "name": "Beaver Dams Trail",
+    "length": "3.6 km",
+    "difficulty": "moderate",
+    "description": "This trail passes through dense forest and wetlands. Moose, deer, fisher, grouse and many other species of birds and mammals may be seen. The highlight of the trail is the Great Blue Heron rookery, identified as large bunches of branches at the tops of swamp-killed trees. In the spring, a few of these nests are active so bring your binoculars! Finally, you will also see a dammed rock fracture which controls the water level of Bucke Lake and affects Grundy and Gut Lakes as well as Nisbet Creek. Beavers are amazing engineers!"
+  },
+  {
+    "parkID": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "name": "Pakeshkag Lake Trail",
+    "length": "5.2 Km",
+    "difficulty": "easy",
+    "description": "This multi-use linear trail is 2.6 km each way and will take approximately 2 hours at a leisurely walking pace. Pack a lunch and enjoy it on one of the picnic tables at the Pakeshkag Lake landing. The trail will take you past the Beaver Lake wetland which is a favourite with birdwatchers in the Spring. This trail can also be used as a portage to access the backcountry sites on Beaver Lake and Pakeshkag Lake."
+  },
+  {
+    "parkID": "1a2bbbca-c4ac-4792-9bd1-234786909889",
+    "name": "Sauble Trail",
+    "length": "2.5 km",
+    "difficulty": "easy",
+    "description": "This trail travels primarily through a Red Pine plantation. An interpretive leaflet explains current and historic forest management practices in the area. Bicycles are not allowed on this trail which travels through an area of ancient sand dunes."
+  },
+  {
+    "parkID": "df02d24f-d9b2-4ee7-bac6-fd2a52e53f3b",
+    "name": "Beaver Pond Trail",
+    "length": "3 km",
+    "difficulty": "moderate",
+    "description": "The Beaver Pond Trail is accessed off the main entrance road between the Park Office and the beach.  Two loops offer hikers a choice between a 2 km and 3 km hike."
   }
 ]

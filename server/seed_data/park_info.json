@@ -62,5 +62,45 @@
     "size": "162.00 ha",
     "established": 1967,
     "Social": "https://www.facebook.com/BonnecherePP/"
+  },
+  {
+    "parkID": "e9f948c1-8b07-491c-a4d7-549e8df50c35",
+    "phone": "519-426-3239",
+    "address": "194 Turkey Point Rd. Turkey Point N0E 1T0",
+    "size": "315.63 ha",
+    "established": 1959,
+    "Social": "https://www.facebook.com/TurkeyPointPP/"
+  },
+  {
+    "parkID": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "phone": "705-633-5572",
+    "address": "Ontario 60, Ontario K0J 2M0",
+    "size": "772300.00 ha",
+    "established": 1893,
+    "Social": "https://www.facebook.com/AlgonquinProvPark/"
+  },
+  {
+    "parkID": "1a2bbbca-c4ac-4792-9bd1-234786909889",
+    "phone": "519-422-1952",
+    "address": "1400 Sauble Falls Road South Bruce Peninsula N0H 2T0",
+    "size": "20.24 ha",
+    "established": 1971,
+    "Social": "https://www.facebook.com/saublefallspp"
+  },
+  {
+    "parkID": "df02d24f-d9b2-4ee7-bac6-fd2a52e53f3b",
+    "phone": "807-484-2181",
+    "address": "ON-71, Nestor Falls, ON P0X 1K0",
+    "size": "147.35 ha",
+    "established": 1960,
+    "Social": "https://www.flickr.com/photos/ontarioparks/albums/72157657166336765"
+  },
+  {
+    "parkID": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "phone": "705-383-2286",
+    "address": "20400 Highway 522 Britt P0G 1A0",
+    "size": "3614.00 ha",
+    "established": 1960,
+    "Social": "https://twitter.com/GrundyLkPP"
   }
 ]

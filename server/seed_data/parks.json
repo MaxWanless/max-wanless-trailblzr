@@ -54,5 +54,40 @@
     "city": "Killaloe",
     "lat": "45.662765",
     "lng": "-77.570878"
+  },
+  {
+    "id": "e9f948c1-8b07-491c-a4d7-549e8df50c35",
+    "name": "Turkey Point",
+    "city": "Turkey Point",
+    "lat": "42.704410",
+    "lng": "-80.335452"
+  },
+  {
+    "id": "37fc1c93-7c40-497c-8e25-8b0170b647f3",
+    "name": "Algonquin",
+    "city": "Whitney",
+    "lat": "45.835620",
+    "lng": "-78.379070"
+  },
+  {
+    "id": "25092cc2-bd85-4bce-8151-5cd642e28d44",
+    "name": "Grundy Lake",
+    "city": "Britt",
+    "lat": "45.927413",
+    "lng": "-80.554799"
+  },
+  {
+    "id": "1a2bbbca-c4ac-4792-9bd1-234786909889",
+    "name": "Sauble Falls",
+    "city": "South Bruce",
+    "lat": "44.674010",
+    "lng": "-81.256814"
+  },
+  {
+    "id": "df02d24f-d9b2-4ee7-bac6-fd2a52e53f3b",
+    "name": "Caliper Lake",
+    "city": "Kenora",
+    "lat": "49.063308",
+    "lng": "-93.913698"
   }
 ]
