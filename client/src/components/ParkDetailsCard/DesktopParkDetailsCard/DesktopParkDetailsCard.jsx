@@ -19,7 +19,7 @@ const ParkDetailsCard = ({ currentParkID }) => {
   const [isLoading, setIsLoading] = useState(true);
   let token = "";
   let decodedUser = {};
-  
+
   if (sessionStorage.getItem("authorization")) {
     token = sessionStorage.getItem("authorization").split(" ")[1];
     decodedUser = jwt_decode(token);
@@ -84,11 +84,14 @@ const ParkDetailsCard = ({ currentParkID }) => {
           </Box>
         </Box>
       </CardContent>
-      <CardContent sx={{ height: "100%" }}>
+      <Divider />
+      <CardContent sx={{ height: "50%" }}>
         <Map park={currentPark} />
       </CardContent>
       <Divider />
-      <ParkDetailsTabs currentPark={currentPark} />
+      <CardContent sx={{ height: "50%" }}>
+        <ParkDetailsTabs currentPark={currentPark} />
+      </CardContent>
     </Card>
   );
 };

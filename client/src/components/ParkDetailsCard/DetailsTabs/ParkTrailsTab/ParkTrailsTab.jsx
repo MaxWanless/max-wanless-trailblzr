@@ -3,9 +3,9 @@ import TrailCard from "./TrailCard";
 
 const ParkTrailsTab = ({ currentPark }) => {
   return (
-    <Box>
+    <Box sx={{ overflowY: "scroll" }}>
       {currentPark.trails?.map((trail) => (
-        <TrailCard trail={trail} />
+        <TrailCard key={trail.name} trail={trail} />
       ))}
     </Box>
   );

@@ -15,7 +15,13 @@ const TrailCard = ({ trail }) => {
 
   return (
     <Box sx={{ marginTop: "1rem" }}>
-      <Box sx={{ display: "flex", alignContent: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "flex-start",
+        }}
+      >
         <Typography fontWeight="bold" marginRight={"1rem"}>
           {trail.name}
         </Typography>
@@ -25,6 +31,7 @@ const TrailCard = ({ trail }) => {
           color={difficultyColor}
           size="small"
           variant="outlined"
+          sx={{ justifySelf: "flex-end" }}
         />
       </Box>
       <Divider sx={{ margin: "0.25rem 0" }} />
