@@ -29,7 +29,7 @@ const ParkDetailsTabs = ({ currentPark }) => {
         <TabPanel value="0" sx={{ padding: "0" }}>
           <ParkHighlightsTab currentPark={currentPark} />
         </TabPanel>
-        <TabPanel value="1" sx={{ padding: "0" }}>
+        <TabPanel value="1" sx={{ padding: "0", overflow: "auto" }}>
           <ParkTrailsTab currentPark={currentPark} />
         </TabPanel>
       </CardContent>
