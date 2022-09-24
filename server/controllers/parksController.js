@@ -6,7 +6,9 @@ exports.parkList = (req, res) => {
       "select park.*,  count(park_trails.parkID) As trailCount From park_trails left join park on park_trails.parkID = park.id group by park.id"
     )
     .then((data) => {
-      res.status(200).json(data[0]);
+      res
+        .status(200)
+        .json(data[0].sort((a, b) => a.name.localeCompare(b.name)));
     });
 };
 
