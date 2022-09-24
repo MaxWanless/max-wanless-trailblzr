@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Route, useLocation } from "react-router-dom";
-import axios from "axios";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import axios from "axios";
+import Container from "@mui/material/Container";
 import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -63,16 +64,20 @@ function App() {
     <div className="app">
       <ThemeProvider theme={theme}>
         <Header />
-        <SlideRoutes location={location}>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/dashboard" element={<Dashboard parks={parks} />} />
-          <Route path="/dashboard/:parkId" element={<ParkDetails />} />
-          <Route path="/map" element={<Map parks={parks} />} />
-          <Route path="/favourites" element={<Favourites parks={parks} />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-        </SlideRoutes>
+        <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
+          {/* <SlideRoutes location={location} > */}
+          <Routes>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/Dashboard" element={<Dashboard parks={parks} />} />
+            <Route path="/Dashboard/:parkId" element={<ParkDetails />} />
+            <Route path="/Map" element={<Map parks={parks} />} />
+            <Route path="/Favourites" element={<Favourites parks={parks} />} />
+            <Route path="/Account" element={<Account />} />
+            <Route path="/Signin" element={<SignIn />} />
+            <Route path="/Signup" element={<SignUp />} />
+          </Routes>
+          {/* </SlideRoutes> */}
+        </Container>
       </ThemeProvider>
     </div>
   );

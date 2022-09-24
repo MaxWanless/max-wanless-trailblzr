@@ -5,7 +5,11 @@ import "./ParkList.scss";
 const ParkList = ({ parks, handleChange, currentParkID }) => {
   return (
     <Container disableGutters sx={{ height: "100%", overflow: "auto" }}>
-      <List disablePadding sx={{ maxHeight: "100%" }}>
+      <List
+        disablePadding
+        sx={{ maxHeight: "100%" }}
+        className="park-list"
+      >
         {parks?.map((park) => (
           <ParkListCard
             park={park}

@@ -13,12 +13,9 @@ const MobileDashboard = ({
 }) => {
   const mobileRef = React.useRef(null);
   return (
-    <Box
-      ref={mobileRef}
-      sx={{ position: "relative", display: { xs: "block", md: "none" } }}
-    >
+    <Box ref={mobileRef} sx={{ position: "relative", height: "100%" }}>
       <Slide direction="right" in={!displayParkDetails}>
-        <Box>
+        <Box height={"100%"}>
           <ParkList parks={parks} handleChange={handleOpenParkDetails} />
         </Box>
       </Slide>
@@ -27,7 +24,14 @@ const MobileDashboard = ({
         in={displayParkDetails}
         container={mobileRef.current}
       >
-        <Box sx={{ position: "absolute", top: "0px", width: "100%" }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "0px",
+            width: "100%",
+            height: "100%",
+          }}
+        >
           <ParkDetailsCard
             handleChange={handleCloseParkDetails}
             currentParkID={currentParkID}
