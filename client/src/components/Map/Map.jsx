@@ -1,6 +1,5 @@
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import Box from "@mui/material/Box";
-import mapStyles from "./mapStyles";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import logo from "../../assets/logos/parks-logo.png";
 
 const mapContainerStyle = {
@@ -9,7 +8,6 @@ const mapContainerStyle = {
 };
 
 const options = {
-  styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
@@ -29,26 +27,28 @@ const Map = ({ park }) => {
   if (!isLoaded) return <div>Loading</div>;
 
   return (
-    <GoogleMap
-      mapContainerStyle={mapContainerStyle}
-      zoom={13}
-      center={center}
-      options={options}
-    >
-      <MarkerF
-        key={park.id}
-        icon={{
-          url: `${logo}`,
-          scaledSize: new window.google.maps.Size(30, 30),
-          origin: new window.google.maps.Point(0, 0),
-          anchor: new window.google.maps.Point(15, 15),
-        }}
-        position={{
-          lat: parseFloat(park.lat),
-          lng: parseFloat(park.lng),
-        }}
-      />
-    </GoogleMap>
+    <Box height={"100%"} sx={{ borderRadius: "4px", overflow: "hidden" }}>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={13}
+        center={center}
+        options={options}
+      >
+        <MarkerF
+          key={park.id}
+          icon={{
+            url: `${logo}`,
+            scaledSize: new window.google.maps.Size(30, 30),
+            origin: new window.google.maps.Point(0, 0),
+            anchor: new window.google.maps.Point(15, 15),
+          }}
+          position={{
+            lat: parseFloat(park.lat),
+            lng: parseFloat(park.lng),
+          }}
+        />
+      </GoogleMap>
+    </Box>
   );
 };
 

@@ -14,11 +14,12 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ParkDetailsTabs from "./ParkDetailsTabs";
 import Map from "../../Map/Map";
 
-const ParkDetailsCard = ({ handleChange, currentParkID }) => {
+const ParkDetailsCard = ({ currentParkID }) => {
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   let token = "";
   let decodedUser = {};
+  
   if (sessionStorage.getItem("authorization")) {
     token = sessionStorage.getItem("authorization").split(" ")[1];
     decodedUser = jwt_decode(token);

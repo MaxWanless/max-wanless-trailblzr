@@ -22,7 +22,6 @@ function Dashboard({ parks }) {
 
   const handleCloseParkDetails = () => {
     setDisplayParkDetails(false);
-    setCurrentParkID("");
   };
 
   return (

@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
 
 const TrailCard = ({ trail }) => {
-  console.log(trail);
   let difficultyColor = "";
   if (trail.difficulty === "easy") {
     difficultyColor = "success";
@@ -15,10 +15,10 @@ const TrailCard = ({ trail }) => {
 
   return (
     <Box sx={{ marginTop: "1rem" }}>
-      <Box
-        sx={{ display: "flex", alignContent: "center", marginBottom: "0.5rem" }}
-      >
-        <Typography marginRight={"1rem"}>{trail.name}</Typography>
+      <Box sx={{ display: "flex", alignContent: "center" }}>
+        <Typography fontWeight="bold" marginRight={"1rem"}>
+          {trail.name}
+        </Typography>
         <Typography marginRight={"1rem"}>{trail.length}</Typography>
         <Chip
           label={trail.difficulty}
@@ -27,6 +27,7 @@ const TrailCard = ({ trail }) => {
           variant="outlined"
         />
       </Box>
+      <Divider sx={{ margin: "0.25rem 0" }} />
       <Typography sx={{ height: "100%" }}>{trail.description}</Typography>
     </Box>
   );

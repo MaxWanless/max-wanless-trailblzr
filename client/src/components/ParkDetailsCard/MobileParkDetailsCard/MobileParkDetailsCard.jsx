@@ -15,8 +15,6 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ParkDetailsTabs from "./ParkDetailsTabs";
 
 const ParkDetailsCard = ({ handleChange, currentParkID }) => {
-  // const [openSnack, setOpenSnack] = useState(false);
-  // const [navFavourites, setNavFavourites] = useState(false);
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   let token = "";
@@ -30,33 +28,14 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
     decodedUser = jwt_decode(token);
   }
 
-  if (currentParkID) {
+  useEffect(() => {
     axios
       .get(`http://localhost:5050/parks/${currentParkID}`)
       .then((response) => {
         setCurrentPark(response.data);
         setIsLoading(false);
       });
-  }
-
-  // const handleOpen = () => {
-  //   setOpenSnack(true);
-  // };
-  // const handleClose = (event, reason) => {
-  //   if (reason === "clickaway") {
-  //     return;
-  //   }
-  //   setOpenSnack(false);
-  // }
-  // const slideDown = (props) => {
-  //   return <Slide {...props} direction="down" />;
-  // };
-  // const handleNavFavoutites = () => {
-  //   setNavFavourites(true);
-  // };
-  // if (navFavourites) {
-  //     return <Navigate to="/favourites" />;
-  //   }
+  }, [currentParkID]);
 
   const handleSubmitFavourite = () => {};
 

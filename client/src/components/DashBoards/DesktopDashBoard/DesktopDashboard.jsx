@@ -6,7 +6,11 @@ const DesktopDashboard = ({ handleOpenParkDetails, parks, currentParkID }) => {
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1 }}>
       <Grid item md={4}>
-        <ParkList parks={parks} handleChange={handleOpenParkDetails} />
+        <ParkList
+          parks={parks}
+          handleChange={handleOpenParkDetails}
+          currentParkID={currentParkID}
+        />
       </Grid>
       <Grid item md={8}>
         <ParkDetailsCard currentParkID={currentParkID} />

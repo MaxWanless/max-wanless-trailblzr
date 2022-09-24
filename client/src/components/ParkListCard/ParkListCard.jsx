@@ -7,6 +7,8 @@ import {
   Avatar,
   styled,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import parkIcon from "../../assets/logos/parks-logo.png";
 import "./ParkListCard.scss";
@@ -17,7 +19,10 @@ const StyledCardContent = styled(CardContent)(`
 }
 `);
 
-const ParkListCard = ({ park, handleChange }) => {
+const ParkListCard = ({ park, handleChange, currentParkID }) => {
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Card sx={{ marginBottom: "0.5rem" }}>
       <StyledCardContent>
