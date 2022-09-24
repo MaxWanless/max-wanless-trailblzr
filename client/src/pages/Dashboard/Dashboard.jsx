@@ -24,7 +24,7 @@ function Dashboard({ parks }) {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ height: "100%" }}>
+    <Container maxWidth="lg" sx={{ height: "100%", overflow: "hidden" }}>
       {mobileView ? (
         <MobileDashboard
           handleOpenParkDetails={handleOpenParkDetails}
