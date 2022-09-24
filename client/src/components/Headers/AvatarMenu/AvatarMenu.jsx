@@ -79,11 +79,18 @@ const AvatarMenu = ({ user }) => {
         onClose={handleCloseUserMenu}
       >
         {user.firstName ? (
-          <Link className="header__link" to="/Account">
-            <MenuItem onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">Profile</Typography>
-            </MenuItem>
-          </Link>
+          <div>
+            <Link className="header__link" to="/Account">
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+            </Link>
+            <Link className="header__link" to="/favourites">
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Favourites</Typography>
+              </MenuItem>
+            </Link>
+          </div>
         ) : (
           <Link className="header__link" to="/signin">
             <MenuItem onClick={handleCloseUserMenu}>

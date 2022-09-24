@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const MobileNavMenu = () => {
-  const pages = ["dashboard", "favourites"];
+  const pages = ["Dashboard", "Map"];
   const [showNavMenu, setShowNavMenu] = useState(false);
 
   const handleOpenNavMenu = (event) => {

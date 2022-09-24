@@ -11,8 +11,8 @@ import AvatarMenu from "../AvatarMenu/AvatarMenu";
 
 const DesktopHeader = ({ user }) => {
   const pathName = useLocation().pathname;
-  const pages = ["dashboard", "favourites"];
-  const routes = ["/dashboard", "/favourites"];
+  const pages = ["Dashboard", "Map"];
+  const routes = ["/Dashboard", "/Map"];
 
   return (
     <AppBar

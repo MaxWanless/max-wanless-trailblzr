@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Map from "./pages/Map/Map";
 import Favourites from "./pages/Favourites/Favourites";
 import ParkDetails from "./pages/ParkDetails/ParkDetails";
 import SignIn from "./pages/SignIn/SignIn";
@@ -66,6 +67,7 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard parks={parks} />} />
           <Route path="/dashboard/:parkId" element={<ParkDetails />} />
+          <Route path="/map" element={<Map parks={parks} />} />
           <Route path="/favourites" element={<Favourites parks={parks} />} />
           <Route path="/account" element={<Account />} />
           <Route path="/signin" element={<SignIn />} />
