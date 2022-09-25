@@ -26,12 +26,11 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 const ParkDetailsCard = ({ handleChange, currentParkID }) => {
   const [currentPark, setCurrentPark] = useState({});
-  const [favourited, setFavourites] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [favourited, setFavourites] = useState(false);
   const [navFavourites, setNavFavourites] = useState(false);
   const [favSuccess, setFavSuccess] = useState({ open: false, message: "" });
   const [favError, setFavError] = useState({ error: false, message: "" });
-
   let token = "";
   let decodedUser = {};
 
@@ -97,7 +96,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
     setFavError({ error: false, message: "" });
   };
 
-  const NavFavourites = () => {
+  const handleNavFavourites = () => {
     setNavFavourites(true);
   };
 
@@ -180,11 +179,15 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
       </Snackbar>
       <Snackbar
         open={favSuccess.open}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
         autoHideDuration={3000}
         onClose={handleCloseSnack}
         message={favSuccess.message}
         action={
-          <Button color="primary" onClick={NavFavourites}>
+          <Button color="primary" onClick={handleNavFavourites}>
             open
           </Button>
         }

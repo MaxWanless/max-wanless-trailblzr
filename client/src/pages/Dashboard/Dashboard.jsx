@@ -11,7 +11,7 @@ function Dashboard({ parks }) {
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
   const [currentParkID, setCurrentParkID] = useState(
-    "5ac78553-299d-419e-81dd-efa6a7f31999"
+    "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca"
   );
 
   const handleOpenParkDetails = (parkID) => {

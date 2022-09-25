@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
+import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
@@ -10,13 +11,25 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import parksIcon from "../../../assets/logos/parks-logo.png";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ParkDetailsTabs from "./ParkDetailsTabs";
 import Map from "../../Map/Map";
 
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const ParkDetailsCard = ({ currentParkID }) => {
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [favourited, setFavourites] = useState(false);
+  const [navFavourites, setNavFavourites] = useState(false);
+  const [favSuccess, setFavSuccess] = useState({ open: false, message: "" });
+  const [favError, setFavError] = useState({ error: false, message: "" });
   let token = "";
   let decodedUser = {};
 
@@ -37,7 +50,58 @@ const ParkDetailsCard = ({ currentParkID }) => {
       });
   }, [currentParkID]);
 
-  const handleSubmitFavourite = () => {};
+  useEffect(() => {
+    if (decodedUser.id) {
+      axios
+        .get(`http://localhost:5050/users/favourites/${decodedUser.id}`)
+        .then((response) => {
+          setFavourites(response.data.includes(currentParkID));
+        });
+    }
+  }, [favourited, currentParkID]);
+
+  const handleSubmitFavourite = () => {
+    if (favourited) {
+      axios
+        .delete(`http://localhost:5050/users/favourites/${decodedUser.id}`, {
+          data: {
+            parkID: currentParkID,
+          },
+        })
+        .then((response) => {
+          setFavourites(false);
+          setFavSuccess({ open: true, message: "Removed from favourites" });
+        })
+        .catch((error) => {
+          setFavError({ error: true, message: error.response.data.message });
+        });
+    } else {
+      axios
+        .post(`http://localhost:5050/users/favourites/${decodedUser.id}`, {
+          parkID: currentParkID,
+        })
+        .then((response) => {
+          setFavourites(true);
+          setFavSuccess({ open: true, message: "Added to favourites" });
+        })
+        .catch((error) => {
+          setFavError({ error: true, message: error.response.data.message });
+        });
+    }
+  };
+
+  const handleCloseSnack = () => {
+    setFavSuccess({ open: false, message: "" });
+    setFavError({ error: false, message: "" });
+  };
+
+  const handleNavFavourites = () => {
+    setNavFavourites(true);
+  };
+
+  if (navFavourites) {
+    return <Navigate to="/Favourites" />;
+  }
 
   if (isLoading) {
     return <div>...Loading</div>;
@@ -60,11 +124,13 @@ const ParkDetailsCard = ({ currentParkID }) => {
           <Box
             sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
           >
-            <Tooltip title="Favourite">
-              <IconButton onClick={handleSubmitFavourite}>
-                <BookmarkBorderIcon />
-              </IconButton>
-            </Tooltip>
+            {decodedUser.firstName ? (
+              <Tooltip title="Favourite">
+                <IconButton onClick={handleSubmitFavourite}>
+                  {favourited ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                </IconButton>
+              </Tooltip>
+            ) : null}
           </Box>
         </Box>
         <Box
@@ -92,6 +158,38 @@ const ParkDetailsCard = ({ currentParkID }) => {
       <CardContent sx={{ height: "50%" }}>
         <ParkDetailsTabs currentPark={currentPark} />
       </CardContent>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={favError.error}
+        onClose={handleCloseSnack}
+        autoHideDuration={3000}
+      >
+        <Alert
+          severity="error"
+          onClose={handleCloseSnack}
+          sx={{ width: "100%" }}
+        >
+          {favError.message}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={favSuccess.open}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        autoHideDuration={3000}
+        onClose={handleCloseSnack}
+        message={favSuccess.message}
+        action={
+          <Button color="primary" onClick={handleNavFavourites}>
+            open
+          </Button>
+        }
+      />
     </Card>
   );
 };
