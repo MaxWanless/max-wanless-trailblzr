@@ -61,7 +61,7 @@ function SignIn() {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/Dashboard" />;
   }
 
   if (

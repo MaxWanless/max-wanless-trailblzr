@@ -65,7 +65,6 @@ function Account() {
   };
 
   const handleDeleteUser = () => {
-    console.log(decodedUser);
     axios
       .delete(`http://localhost:5050/users/${decodedUser.id}`)
       .then((response) => {
@@ -87,7 +86,7 @@ function Account() {
   };
 
   if (updateInfoSuccess) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/Dashboard" />;
   }
 
   if (signOut) {

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Container from "@mui/material/Container";
-import SlideRoutes from "react-slide-routes";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Map from "./pages/Map/Map";
@@ -17,7 +16,6 @@ import "./App.scss";
 function App() {
   const [parks, setParks] = useState(true);
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -51,9 +49,7 @@ function App() {
         setParks(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   if (loading) {
@@ -65,7 +61,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <Header />
         <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
-          {/* <SlideRoutes location={location} > */}
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/Dashboard" element={<Dashboard parks={parks} />} />
@@ -76,7 +71,6 @@ function App() {
             <Route path="/Signin" element={<SignIn />} />
             <Route path="/Signup" element={<SignUp />} />
           </Routes>
-          {/* </SlideRoutes> */}
         </Container>
       </ThemeProvider>
     </div>

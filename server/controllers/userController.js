@@ -60,7 +60,6 @@ exports.login = (req, res) => {
     .where("userName", userName)
     .then((data) => {
       const passwordCheck = bcrypt.compareSync(password, data[0].password);
-      console.log(data.length);
       if (data.length && passwordCheck) {
         const payload = {
           id: data[0].id,
