@@ -1,14 +1,10 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  IconButton,
-  Avatar,
-  styled,
-} from "@mui/material";
-import { useTheme } from "@emotion/react";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import { styled } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import parkIcon from "../../assets/logos/parks-logo.png";
 import "./ParkListCard.scss";
@@ -19,10 +15,7 @@ const StyledCardContent = styled(CardContent)(`
 }
 `);
 
-const ParkListCard = ({ park, handleChange, currentParkID }) => {
-  const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
-
+const ParkListCard = ({ park, handleChange }) => {
   return (
     <Card sx={{ marginBottom: "0.5rem" }}>
       <StyledCardContent>

@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Container, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TerrainIcon from "@mui/icons-material/Terrain";

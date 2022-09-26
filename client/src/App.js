@@ -44,7 +44,6 @@ function App() {
     },
   });
   let token = "";
-  let decodedUser = {};
 
   useEffect(() => {
     axios
