@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import logo from "../../assets/logos/parks-logo.png";
 
 const mapContainerStyle = {
@@ -30,7 +30,7 @@ const Map = ({ parks }) => {
   if (!isLoaded) return <div>Loading</div>;
 
   return (
-    <Container maxWidth="lg" sx={{ height: "100%" }}>
+    <Container maxWidth="lg" sx={{ height: "100%", paddingBottom: "1rem" }}>
       <Card sx={{ height: "100%" }}>
         <CardContent
           sx={{ height: "100%", borderRadius: "4px", overflow: "hidden" }}
@@ -43,7 +43,7 @@ const Map = ({ parks }) => {
               options={options}
             >
               {parks?.map((park) => {
-                <MarkerF
+                <Marker
                   key={park.id}
                   icon={{
                     url: `${logo}`,
@@ -55,7 +55,7 @@ const Map = ({ parks }) => {
                     lat: parseFloat(park.lat),
                     lng: parseFloat(park.lng),
                   }}
-                />;
+                ></Marker>;
               })}
             </GoogleMap>
           </Box>
