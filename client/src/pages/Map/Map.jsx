@@ -1,9 +1,16 @@
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  MarkerF,
+  InfoWindowF,
+} from "@react-google-maps/api";
 import logo from "../../assets/logos/parks-logo.png";
+import MapDetailsCard from "../../components/Map/MapDetailsCard";
 
 const mapContainerStyle = {
   width: "100%",
@@ -20,10 +27,11 @@ const center = {
   lng: -85.917334,
 };
 
-const Map = ({ parks }) => {
+const Map = ({ parks, user }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
+  const [selected, setSelected] = useState(null);
 
   if (loadError) return <div>Load Error</div>;
 
@@ -43,20 +51,40 @@ const Map = ({ parks }) => {
               options={options}
             >
               {parks?.map((park) => {
-                <Marker
-                  key={park.id}
-                  icon={{
-                    url: `${logo}`,
-                    scaledSize: new window.google.maps.Size(30, 30),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(15, 15),
-                  }}
-                  position={{
-                    lat: parseFloat(park.lat),
-                    lng: parseFloat(park.lng),
-                  }}
-                ></Marker>;
+                return (
+                  <MarkerF
+                    title={park.name}
+                    key={park.id}
+                    icon={{
+                      url: `${logo}`,
+                      scaledSize: new window.google.maps.Size(30, 30),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                    }}
+                    position={{
+                      lat: parseFloat(park.lat),
+                      lng: parseFloat(park.lng),
+                    }}
+                    onClick={() => {
+                      setSelected(park);
+                      console.log(selected);
+                    }}
+                  />
+                );
               })}
+              {selected ? (
+                <InfoWindowF
+                  position={{
+                    lat: parseFloat(selected.lat),
+                    lng: parseFloat(selected.lng),
+                  }}
+                  onCloseClick={() => {
+                    setSelected(null);
+                  }}
+                >
+                  <MapDetailsCard currentParkID={selected.id} user={user} />
+                </InfoWindowF>
+              ) : null}
             </GoogleMap>
           </Box>
         </CardContent>
