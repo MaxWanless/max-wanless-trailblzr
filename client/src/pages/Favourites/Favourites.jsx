@@ -21,7 +21,7 @@ function Favourites({ parks, user }) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`)
+      .get(`${process.env.REACT_APP_API_URL}users/favourites/${user.id}`)
       .then((response) => {
         setFavourites(response.data);
         if (currentParkID === "" && response.data.length) {
