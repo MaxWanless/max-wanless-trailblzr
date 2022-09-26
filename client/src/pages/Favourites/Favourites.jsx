@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import axios from "axios";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Favourites.scss";
@@ -12,20 +15,28 @@ function Favourites({ parks, user }) {
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(true);
   const [favourites, setFavourites] = useState([]);
+  const [noFavourites, setNoFavourites] = useState(false);
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
-  const [currentParkID, setCurrentParkID] = useState(
-    "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca"
-  );
+  const [currentParkID, setCurrentParkID] = useState("");
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`)
       .then((response) => {
         setFavourites(response.data);
+        if (currentParkID === "" && response.data.length) {
+          setCurrentParkID(
+            parks.filter((park) => response.data.includes(park.id))[0].id
+          );
+        } else if (!response.data.length) {
+          setNoFavourites(true);
+        }
         setLoading(false);
       })
-      .catch((error) => {});
-  }, [displayParkDetails, user.id]);
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [displayParkDetails, user.id, currentParkID, parks]);
 
   const handleOpenParkDetails = (parkID) => {
     setDisplayParkDetails(true);
@@ -38,6 +49,16 @@ function Favourites({ parks, user }) {
 
   if (loading) {
     return <div>...Loading</div>;
+  }
+  if (noFavourites) {
+    return (
+      <Card sx={{ margin: " 0 1rem" }}>
+        <CardContent>
+          No favourites back to 
+          <Link to="/Dashboard">Dashboard</Link>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (

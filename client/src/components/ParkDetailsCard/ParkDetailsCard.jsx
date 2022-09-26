@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import axios from "axios";
@@ -29,7 +29,6 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [favourited, setFavourites] = useState(false);
-  const [navFavourites, setNavFavourites] = useState(false);
   const [favSuccess, setFavSuccess] = useState({ open: false, message: "" });
   const [favError, setFavError] = useState({ error: false, message: "" });
   const theme = useTheme();
@@ -91,14 +90,6 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
     setFavSuccess({ open: false, message: "" });
     setFavError({ error: false, message: "" });
   };
-
-  const handleNavFavourites = () => {
-    setNavFavourites(true);
-  };
-
-  if (navFavourites) {
-    return <Navigate to="/Favourites" />;
-  }
 
   if (isLoading) {
     return <div>...Loading</div>;
@@ -185,9 +176,9 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
         onClose={handleCloseSnack}
         message={favSuccess.message}
         action={
-          <Button color="primary" onClick={handleNavFavourites}>
-            open
-          </Button>
+          <Link to="/Favourites">
+            <Button color="primary">open</Button>
+          </Link>
         }
       />
     </>
