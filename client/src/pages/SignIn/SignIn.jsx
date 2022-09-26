@@ -5,12 +5,10 @@ import jwt_decode from "jwt-decode";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import "./SignIn.scss";
@@ -21,12 +19,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 function SignIn({ handleUserChange }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const [loginError, setLoginError] = useState({ error: false, message: "" });
-
-  const handleRememberMe = () => {
-    setRememberMe(!rememberMe);
-  };
 
   const handleCloseSnack = () => {
     setLoginError({ error: false, message: "" });
@@ -42,17 +35,10 @@ function SignIn({ handleUserChange }) {
       .post("http://localhost:5050/users/login", userInfo)
       .then((response) => {
         if (response.status === 200) {
-          if (rememberMe) {
-            localStorage.setItem(
-              "authorization",
-              `Bearer ${response.data.token}`
-            );
-          } else {
-            sessionStorage.setItem(
-              "authorization",
-              `Bearer ${response.data.token}`
-            );
-          }
+          sessionStorage.setItem(
+            "authorization",
+            `Bearer ${response.data.token}`
+          );
         }
         const token = sessionStorage.getItem("authorization").split(" ")[1];
         const decodedUser = jwt_decode(token);
@@ -68,10 +54,7 @@ function SignIn({ handleUserChange }) {
     return <Navigate to="/Dashboard" />;
   }
 
-  if (
-    sessionStorage.getItem("authorization") ||
-    localStorage.getItem("authorization")
-  ) {
+  if (sessionStorage.getItem("authorization")) {
     setIsLoggedIn(true);
   }
 
@@ -108,11 +91,12 @@ function SignIn({ handleUserChange }) {
               type="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox onClick={handleRememberMe} />}
-              label="Remember Me"
-            ></FormControlLabel>
-            <Button variant="contained" fullWidth type="submit">
+            <Button
+              variant="contained"
+              fullWidth
+              type="submit"
+              sx={{ marginTop: "1rem" }}
+            >
               Sign In
             </Button>
           </Box>
