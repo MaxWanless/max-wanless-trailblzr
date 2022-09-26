@@ -17,19 +17,19 @@ const ParkDetailsTabs = ({ currentPark }) => {
 
   return (
     <TabContext value={activeTab}>
-      <CardContent sx={{ paddingTop: "0" }}>
-        <TabList onChange={handleTabChange} centered>
-          <Tab label="Details" value="2" />
-          <Tab label="Highlights" value="0" />
-          <Tab label="Trails" value="1" />
-        </TabList>
+      <TabList onChange={handleTabChange} centered>
+        <Tab label="Details" value="2" />
+        <Tab label="Highlights" value="0" />
+        <Tab label="Trails" value="1" />
+      </TabList>
+      <CardContent sx={{ paddingTop: "0", height: "100%", overflowY: "scroll" }}>
         <TabPanel value="2" sx={{ padding: "0" }}>
           <ParkDetailsTab currentPark={currentPark} />
         </TabPanel>
         <TabPanel value="0" sx={{ padding: "0" }}>
           <ParkHighlightsTab currentPark={currentPark} />
         </TabPanel>
-        <TabPanel value="1" sx={{ padding: "0", overflow: "auto" }}>
+        <TabPanel value="1" sx={{ padding: "0" }}>
           <ParkTrailsTab currentPark={currentPark} />
         </TabPanel>
       </CardContent>
