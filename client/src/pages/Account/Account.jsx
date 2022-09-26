@@ -58,8 +58,7 @@ function Account({ handleUserChange, user }) {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/users/${user.id}`)
       .then((response) => {
-        sessionStorage.removeItem("authorization");
-        setSignOut(true);
+        handleSignOut();
       })
       .catch((error) => {});
   };
@@ -103,6 +102,18 @@ function Account({ handleUserChange, user }) {
           </Box>
           <Box component="form" onSubmit={handleSubmit}>
             <TextField
+              label="Username"
+              name="username"
+              variant="outlined"
+              required
+              size="small"
+              margin="normal"
+              fullWidth
+              defaultValue={user.userName}
+              disabled
+              autoComplete="username"
+            />
+            <TextField
               label="First Name"
               name="firstname"
               variant="outlined"
@@ -135,18 +146,6 @@ function Account({ handleUserChange, user }) {
               defaultValue={user.email}
               disabled={enableEdit}
               autoComplete="email"
-            />
-            <TextField
-              label="Username"
-              name="username"
-              variant="outlined"
-              required
-              size="small"
-              margin="normal"
-              fullWidth
-              defaultValue={user.userName}
-              disabled={enableEdit}
-              autoComplete="username"
             />
             <Button
               type="submit"
