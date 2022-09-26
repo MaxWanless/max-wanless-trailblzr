@@ -73,7 +73,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
         });
     } else {
       axios
-        .post(`http://localhost:5050/users/favourites/${user.id}`, {
+        .post(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`, {
           parkID: currentParkID,
         })
         .then((response) => {

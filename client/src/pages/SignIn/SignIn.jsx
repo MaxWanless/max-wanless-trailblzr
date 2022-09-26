@@ -32,7 +32,7 @@ function SignIn({ handleUserChange }) {
       password: event.target.password.value,
     };
     axios
-      .post("http://localhost:5050/users/login", userInfo)
+      .post(`${process.env.REACT_APP_API_URL}/users/login`, userInfo)
       .then((response) => {
         if (response.status === 200) {
           sessionStorage.setItem(
