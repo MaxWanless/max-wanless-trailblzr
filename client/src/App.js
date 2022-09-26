@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 import { Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import axios from "axios";
@@ -42,16 +43,28 @@ function App() {
       body2: { fontSize: 13, fontWeight: 400, lineHeight: "1rem" },
     },
   });
+  let token = "";
+  let decodedUser = {};
 
   useEffect(() => {
     axios
-      .get("http://localhost:5050/parks")
+      .get(`${process.env.REACT_APP_API_URL}/parks`)
       .then((response) => {
         setParks(response.data);
         setLoading(false);
       })
       .catch((error) => {});
   }, []);
+
+  if (!user.firstName) {
+    if (sessionStorage.getItem("authorization")) {
+      token = sessionStorage.getItem("authorization").split(" ")[1];
+      setUser(jwt_decode(token));
+    } else if (localStorage.getItem("authorization")) {
+      token = localStorage.getItem("authorization").split(" ")[1];
+      setUser(jwt_decode(token));
+    }
+  }
 
   const handleUserChange = (user) => {
     setUser(user);
@@ -83,9 +96,14 @@ function App() {
             />
             <Route
               path="/Account"
-              element={<Account handleUserChange={handleUserChange} user={user} />}
+              element={
+                <Account handleUserChange={handleUserChange} user={user} />
+              }
             />
-            <Route path="/Signin" element={<SignIn />} />
+            <Route
+              path="/Signin"
+              element={<SignIn handleUserChange={handleUserChange} />}
+            />
             <Route path="/Signup" element={<SignUp />} />
           </Routes>
         </Container>

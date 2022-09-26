@@ -56,7 +56,7 @@ function Account({ handleUserChange, user }) {
 
   const handleDeleteUser = () => {
     axios
-      .delete(`http://localhost:5050/users/${user.id}`)
+      .delete(`${process.env.REACT_APP_API_URL}/users/${user.id}`)
       .then((response) => {
         sessionStorage.removeItem("authorization");
         setSignOut(true);

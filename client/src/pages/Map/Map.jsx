@@ -42,7 +42,7 @@ const Map = ({ parks }) => {
               center={center}
               options={options}
             >
-              {parks.map((park) => {
+              {parks?.map((park) => {
                 <MarkerF
                   key={park.id}
                   icon={{

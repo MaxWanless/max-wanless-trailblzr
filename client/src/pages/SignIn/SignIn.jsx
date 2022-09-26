@@ -59,9 +59,9 @@ function SignIn({ handleUserChange }) {
         handleUserChange(decodedUser);
         setIsLoggedIn(true);
       })
-      .catch((error) =>
-        setLoginError({ error: true, message: error.response.data.message })
-      );
+      .catch((error) => {
+        setLoginError({ error: true, message: error.response.data.message });
+      });
   };
 
   if (isLoggedIn) {

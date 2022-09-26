@@ -19,7 +19,7 @@ function Favourites({ parks, user }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5050/users/favourites/${user.id}`)
+      .get(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`)
       .then((response) => {
         setFavourites(response.data);
         setLoading(false);

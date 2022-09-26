@@ -7,7 +7,6 @@ import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/Deskt
 import "./Dashboard.scss";
 
 function Dashboard({ parks, user }) {
-  console.log(user)
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
