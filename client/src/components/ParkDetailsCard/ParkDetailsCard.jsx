@@ -1,5 +1,7 @@
 import { useState, useEffect, forwardRef } from "react";
 import { Navigate } from "react-router-dom";
+import { useTheme } from "@emotion/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
@@ -30,6 +32,8 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
   const [navFavourites, setNavFavourites] = useState(false);
   const [favSuccess, setFavSuccess] = useState({ open: false, message: "" });
   const [favError, setFavError] = useState({ error: false, message: "" });
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     axios
@@ -53,11 +57,14 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
   const handleSubmitFavourite = () => {
     if (favourited) {
       axios
-        .delete(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`, {
-          data: {
-            parkID: currentParkID,
-          },
-        })
+        .delete(
+          `${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`,
+          {
+            data: {
+              parkID: currentParkID,
+            },
+          }
+        )
         .then((response) => {
           setFavourites(false);
           setFavSuccess({ open: true, message: "Removed from favourites" });
@@ -102,9 +109,11 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
       <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton onClick={handleChange}>
-              <ArrowBackIcon />
-            </IconButton>
+            {mobileView ? (
+              <IconButton onClick={handleChange}>
+                <ArrowBackIcon />
+              </IconButton>
+            ) : null}
             <Avatar alt="Parks logo" variant="square" src={parksIcon} />
             <Typography variant="h2" color="primary" marginLeft={"1rem"}>
               {currentPark.name}
