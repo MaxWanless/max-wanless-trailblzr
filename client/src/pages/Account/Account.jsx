@@ -56,7 +56,7 @@ function Account({ handleUserChange, user }) {
 
   const handleDeleteUser = () => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}users/${user.id}`)
+      .delete(`${process.env.REACT_APP_API_URL}/users/${user.id}`)
       .then((response) => {
         handleSignOut();
       })

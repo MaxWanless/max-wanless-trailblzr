@@ -37,7 +37,7 @@ function SignUp() {
       password: event.target.password.value,
     };
     axios
-      .post(`${process.env.REACT_APP_API_URL}users/register`, newUser)
+      .post(`${process.env.REACT_APP_API_URL}/users/register`, newUser)
       .then((response) => setRegisterSuccess(true))
       .catch((error) =>
         setRegisterError({ error: true, message: error.response.data.message })

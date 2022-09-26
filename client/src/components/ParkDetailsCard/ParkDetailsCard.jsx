@@ -36,7 +36,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}parks/${currentParkID}`)
+      .get(`${process.env.REACT_APP_API_URL}/parks/${currentParkID}`)
       .then((response) => {
         setCurrentPark(response.data);
         setIsLoading(false);
@@ -46,7 +46,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
   useEffect(() => {
     if (user.id) {
       axios
-        .get(`${process.env.REACT_APP_API_URL}users/favourites/${user.id}`)
+        .get(`${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`)
         .then((response) => {
           setFavourites(response.data.includes(currentParkID));
         });
@@ -57,7 +57,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
     if (favourited) {
       axios
         .delete(
-          `${process.env.REACT_APP_API_URL}users/favourites/${user.id}`,
+          `${process.env.REACT_APP_API_URL}/users/favourites/${user.id}`,
           {
             data: {
               parkID: currentParkID,
