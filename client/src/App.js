@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/parks`)
+      .get(`${process.env.REACT_APP_API_URL}parks`)
       .then((response) => {
         setParks(response.data);
         setLoading(false);
