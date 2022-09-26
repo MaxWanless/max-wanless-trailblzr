@@ -4,9 +4,9 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import ParkDetailsTab from "../DetailsTabs/ParkDetailsTab/ParkDetailsTab";
-import ParkHighlightsTab from "../DetailsTabs/ParkHighlightsTab/ParkHighlightsTab";
-import ParkTrailsTab from "../DetailsTabs/ParkTrailsTab/ParkTrailsTab";
+import ParkDetailsTab from "./DetailsTabs/ParkDetailsTab/ParkDetailsTab";
+import ParkHighlightsTab from "./DetailsTabs/ParkHighlightsTab/ParkHighlightsTab";
+import ParkTrailsTab from "./DetailsTabs/ParkTrailsTab/ParkTrailsTab";
 
 const ParkDetailsTabs = ({ currentPark }) => {
   const [activeTab, setActiveTab] = useState("0");

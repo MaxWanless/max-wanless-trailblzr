@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import ParkList from "../../ParkList/ParkList";
-import ParkDetailsCard from "../../ParkDetailsCard/DesktopParkDetailsCard/DesktopParkDetailsCard";
+import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
 
 const DesktopDashboard = ({ handleOpenParkDetails, parks, currentParkID }) => {
   return (

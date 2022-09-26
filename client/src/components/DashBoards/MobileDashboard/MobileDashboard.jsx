@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import ParkList from "../../ParkList/ParkList";
-import ParkDetailsCard from "../../ParkDetailsCard/MobileParkDetailsCard/MobileParkDetailsCard";
+import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
 
 const MobileDashboard = ({
   handleOpenParkDetails,

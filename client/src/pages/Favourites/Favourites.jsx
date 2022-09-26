@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Favourites.scss";
@@ -41,7 +37,7 @@ function Favourites({ parks }) {
         setLoading(false);
       })
       .catch((error) => {});
-  }, [displayParkDetails]);
+  }, [displayParkDetails, decodedUser.id]);
 
   const handleOpenParkDetails = (parkID) => {
     setDisplayParkDetails(true);
@@ -54,20 +50,6 @@ function Favourites({ parks }) {
 
   if (loading) {
     return <div>...Loading</div>;
-  }
-
-  if (favourites.length === 0) {
-    return (
-      <Container>
-        <Card>
-          <CardContent>
-            <Typography>
-              No Favourites return to <Link to="/Dashboard">Dashboard</Link>
-            </Typography>
-          </CardContent>
-        </Card>
-      </Container>
-    );
   }
 
   return (

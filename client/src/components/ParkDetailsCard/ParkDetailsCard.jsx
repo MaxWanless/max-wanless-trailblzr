@@ -10,20 +10,21 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import parksIcon from "../../../assets/logos/parks-logo.png";
+import parksIcon from "../../assets/logos/parks-logo.png";
+import Map from "../Map/Map";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ParkDetailsTabs from "./ParkDetailsTabs";
-import Map from "../../Map/Map";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const ParkDetailsCard = ({ currentParkID }) => {
+const ParkDetailsCard = ({ handleChange, currentParkID }) => {
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [favourited, setFavourites] = useState(false);
@@ -58,7 +59,7 @@ const ParkDetailsCard = ({ currentParkID }) => {
           setFavourites(response.data.includes(currentParkID));
         });
     }
-  }, [favourited, currentParkID]);
+  }, [favourited, currentParkID, decodedUser.id]);
 
   const handleSubmitFavourite = () => {
     if (favourited) {
@@ -108,56 +109,57 @@ const ParkDetailsCard = ({ currentParkID }) => {
   }
 
   return (
-    <Card
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
-    >
-      <CardContent>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Avatar alt="Parks logo" variant="square" src={parksIcon} />
-          <Typography variant="h2" color="primary" marginLeft={"1rem"}>
-            {currentPark.name}
-          </Typography>
+    <>
+      <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        <CardContent>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton onClick={handleChange}>
+              <ArrowBackIcon />
+            </IconButton>
+            <Avatar alt="Parks logo" variant="square" src={parksIcon} />
+            <Typography variant="h2" color="primary" marginLeft={"1rem"}>
+              {currentPark.name}
+            </Typography>
+            <Box
+              sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
+            >
+              {decodedUser.firstName ? (
+                <Tooltip title="Favourite">
+                  <IconButton onClick={handleSubmitFavourite}>
+                    {favourited ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                  </IconButton>
+                </Tooltip>
+              ) : null}
+            </Box>
+          </Box>
           <Box
-            sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              mt: "4px",
+            }}
           >
-            {decodedUser.firstName ? (
-              <Tooltip title="Favourite">
-                <IconButton onClick={handleSubmitFavourite}>
-                  {favourited ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-                </IconButton>
-              </Tooltip>
-            ) : null}
+            <Box sx={{ mr: "1rem" }}>
+              <Typography variant="h4">CITY</Typography>
+              <Typography variant="body2">{currentPark.city}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="h4">TRAILS</Typography>
+              <Typography variant="body2">
+                {currentPark.trails.length}
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mt: "4px",
-          }}
-        >
-          <Box sx={{ mr: "1rem" }}>
-            <Typography variant="h4">CITY</Typography>
-            <Typography variant="body2">{currentPark.city}</Typography>
-          </Box>
-          <Box>
-            <Typography variant="h4">TRAILS</Typography>
-            <Typography variant="body2">{currentPark.trails.length}</Typography>
-          </Box>
-        </Box>
-      </CardContent>
-      <Divider />
-      <CardContent sx={{ height: "50%" }}>
-        <Map park={currentPark} />
-      </CardContent>
-      <Divider />
-      <CardContent sx={{ height: "50%" }}>
-        <ParkDetailsTabs currentPark={currentPark} />
-      </CardContent>
+        </CardContent>
+        <Divider />
+        <CardContent sx={{ height: "50%" }}>
+          <Map park={currentPark} />
+        </CardContent>
+        <Divider />
+        <CardContent sx={{ height: "50%" }}>
+          <ParkDetailsTabs currentPark={currentPark} />
+        </CardContent>
+      </Card>
       <Snackbar
         anchorOrigin={{
           vertical: "top",
@@ -190,7 +192,7 @@ const ParkDetailsCard = ({ currentParkID }) => {
           </Button>
         }
       />
-    </Card>
+    </>
   );
 };
 
