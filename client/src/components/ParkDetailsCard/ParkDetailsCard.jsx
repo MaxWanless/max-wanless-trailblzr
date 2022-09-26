@@ -1,6 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
 import { Navigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
@@ -24,23 +23,13 @@ const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const ParkDetailsCard = ({ handleChange, currentParkID }) => {
+const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
   const [currentPark, setCurrentPark] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [favourited, setFavourites] = useState(false);
   const [navFavourites, setNavFavourites] = useState(false);
   const [favSuccess, setFavSuccess] = useState({ open: false, message: "" });
   const [favError, setFavError] = useState({ error: false, message: "" });
-  let token = "";
-  let decodedUser = {};
-
-  if (sessionStorage.getItem("authorization")) {
-    token = sessionStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  } else if (localStorage.getItem("authorization")) {
-    token = localStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  }
 
   useEffect(() => {
     axios
@@ -52,19 +41,19 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
   }, [currentParkID]);
 
   useEffect(() => {
-    if (decodedUser.id) {
+    if (user.id) {
       axios
-        .get(`http://localhost:5050/users/favourites/${decodedUser.id}`)
+        .get(`http://localhost:5050/users/favourites/${user.id}`)
         .then((response) => {
           setFavourites(response.data.includes(currentParkID));
         });
     }
-  }, [favourited, currentParkID, decodedUser.id]);
+  }, [favourited, currentParkID, user.id]);
 
   const handleSubmitFavourite = () => {
     if (favourited) {
       axios
-        .delete(`http://localhost:5050/users/favourites/${decodedUser.id}`, {
+        .delete(`http://localhost:5050/users/favourites/${user.id}`, {
           data: {
             parkID: currentParkID,
           },
@@ -78,7 +67,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
         });
     } else {
       axios
-        .post(`http://localhost:5050/users/favourites/${decodedUser.id}`, {
+        .post(`http://localhost:5050/users/favourites/${user.id}`, {
           parkID: currentParkID,
         })
         .then((response) => {
@@ -123,7 +112,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID }) => {
             <Box
               sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}
             >
-              {decodedUser.firstName ? (
+              {user.firstName ? (
                 <Tooltip title="Favourite">
                   <IconButton onClick={handleSubmitFavourite}>
                     {favourited ? <BookmarkIcon /> : <BookmarkBorderIcon />}

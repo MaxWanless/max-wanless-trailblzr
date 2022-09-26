@@ -1,6 +1,7 @@
 import { useState, forwardRef } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -18,7 +19,7 @@ const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function SignIn() {
+function SignIn({ handleUserChange }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loginError, setLoginError] = useState({ error: false, message: "" });
@@ -53,6 +54,9 @@ function SignIn() {
             );
           }
         }
+        const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const decodedUser = jwt_decode(token);
+        handleUserChange(decodedUser);
         setIsLoggedIn(true);
       })
       .catch((error) =>
@@ -70,7 +74,7 @@ function SignIn() {
   ) {
     setIsLoggedIn(true);
   }
-  
+
   return (
     <Container
       maxWidth="xs"

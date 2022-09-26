@@ -16,6 +16,7 @@ import "./App.scss";
 function App() {
   const [parks, setParks] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -52,6 +53,10 @@ function App() {
       .catch((error) => {});
   }, []);
 
+  const handleUserChange = (user) => {
+    setUser(user);
+  };
+
   if (loading) {
     return <div>...Loading</div>;
   }
@@ -59,15 +64,27 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
-        <Header />
+        <Header user={user} />
         <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
           <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="/Dashboard" element={<Dashboard parks={parks} />} />
+            <Route
+              path="/"
+              element={<SignIn handleUserChange={handleUserChange} />}
+            />
+            <Route
+              path="/Dashboard"
+              element={<Dashboard parks={parks} user={user} />}
+            />
             <Route path="/Dashboard/:parkId" element={<ParkDetails />} />
-            <Route path="/Map" element={<Map parks={parks} />} />
-            <Route path="/Favourites" element={<Favourites parks={parks} />} />
-            <Route path="/Account" element={<Account />} />
+            <Route path="/Map" element={<Map parks={parks} user={user} />} />
+            <Route
+              path="/Favourites"
+              element={<Favourites parks={parks} user={user} />}
+            />
+            <Route
+              path="/Account"
+              element={<Account handleUserChange={handleUserChange} user={user} />}
+            />
             <Route path="/Signin" element={<SignIn />} />
             <Route path="/Signup" element={<SignUp />} />
           </Routes>

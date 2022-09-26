@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import ParkList from "../../ParkList/ParkList";
 import ParkDetailsCard from "../../ParkDetailsCard/ParkDetailsCard";
 
-const DesktopDashboard = ({ handleOpenParkDetails, parks, currentParkID }) => {
+const DesktopDashboard = ({ handleOpenParkDetails, parks, currentParkID, user }) => {
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1, height: "100%" }}>
       <Grid item md={4} sx={{ height: "100%" }}>
@@ -13,7 +13,7 @@ const DesktopDashboard = ({ handleOpenParkDetails, parks, currentParkID }) => {
         />
       </Grid>
       <Grid item md={8} sx={{ height: "100%" }}>
-        <ParkDetailsCard currentParkID={currentParkID} />
+        <ParkDetailsCard currentParkID={currentParkID} user={user}/>
       </Grid>
     </Grid>
   );

@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Favourites.scss";
 
-function Favourites({ parks }) {
+function Favourites({ parks, user }) {
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(true);
@@ -18,26 +17,15 @@ function Favourites({ parks }) {
     "e0d9a9f6-e65f-4dfa-ad5f-83e394cc1bca"
   );
 
-  let token = "";
-  let decodedUser = {};
-
-  if (sessionStorage.getItem("authorization")) {
-    token = sessionStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  } else if (localStorage.getItem("authorization")) {
-    token = localStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  }
-
   useEffect(() => {
     axios
-      .get(`http://localhost:5050/users/favourites/${decodedUser.id}`)
+      .get(`http://localhost:5050/users/favourites/${user.id}`)
       .then((response) => {
         setFavourites(response.data);
         setLoading(false);
       })
       .catch((error) => {});
-  }, [displayParkDetails, decodedUser.id]);
+  }, [displayParkDetails, user.id]);
 
   const handleOpenParkDetails = (parkID) => {
     setDisplayParkDetails(true);
@@ -61,6 +49,7 @@ function Favourites({ parks }) {
           displayParkDetails={displayParkDetails}
           parks={parks.filter((park) => favourites.includes(park.id))}
           currentParkID={currentParkID}
+          user={user}
         />
       ) : (
         <DesktopDashboard
@@ -69,6 +58,7 @@ function Favourites({ parks }) {
           displayParkDetails={displayParkDetails}
           parks={parks.filter((park) => favourites.includes(park.id))}
           currentParkID={currentParkID}
+          user={user}
         />
       )}
     </Container>

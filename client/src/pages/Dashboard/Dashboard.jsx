@@ -6,7 +6,8 @@ import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileD
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Dashboard.scss";
 
-function Dashboard({ parks }) {
+function Dashboard({ parks, user }) {
+  console.log(user)
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [displayParkDetails, setDisplayParkDetails] = useState(false);
@@ -32,6 +33,7 @@ function Dashboard({ parks }) {
           displayParkDetails={displayParkDetails}
           parks={parks}
           currentParkID={currentParkID}
+          user={user}
         />
       ) : (
         <DesktopDashboard
@@ -40,6 +42,7 @@ function Dashboard({ parks }) {
           displayParkDetails={displayParkDetails}
           parks={parks}
           currentParkID={currentParkID}
+          user={user}
         />
       )}
     </Container>

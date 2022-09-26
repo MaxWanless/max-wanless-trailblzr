@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -25,13 +24,11 @@ const ModalStyle = {
   padding: "1rem",
 };
 
-function Account() {
+function Account({ handleUserChange, user }) {
   const [signOut, setSignOut] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [updateInfoSuccess, setUpdateInfoSuccess] = useState(false);
   const [enableEdit, setEnableEdit] = useState(true);
-  let token = "";
-  let decodedUser = {};
 
   if (
     !sessionStorage.getItem("authorization") &&
@@ -41,19 +38,12 @@ function Account() {
     setSignOut(true);
   }
 
-  if (sessionStorage.getItem("authorization")) {
-    token = sessionStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  } else if (localStorage.getItem("authorization")) {
-    token = localStorage.getItem("authorization").split(" ")[1];
-    decodedUser = jwt_decode(token);
-  }
-
   const handleSignOut = () => {
     sessionStorage.removeItem("authorization");
     localStorage.removeItem("authorization");
     setEnableEdit(true);
     setSignOut(true);
+    handleUserChange({});
   };
 
   const handleOpenDeleteModalAccount = () => {
@@ -66,7 +56,7 @@ function Account() {
 
   const handleDeleteUser = () => {
     axios
-      .delete(`http://localhost:5050/users/${decodedUser.id}`)
+      .delete(`http://localhost:5050/users/${user.id}`)
       .then((response) => {
         sessionStorage.removeItem("authorization");
         setSignOut(true);
@@ -119,7 +109,7 @@ function Account() {
               required
               size="small"
               margin="normal"
-              defaultValue={decodedUser.firstName}
+              defaultValue={user.firstName}
               disabled={enableEdit}
               fullWidth
             />
@@ -130,7 +120,7 @@ function Account() {
               required
               size="small"
               margin="normal"
-              defaultValue={decodedUser.lastName}
+              defaultValue={user.lastName}
               disabled={enableEdit}
               fullWidth
             />
@@ -142,7 +132,7 @@ function Account() {
               size="small"
               margin="normal"
               fullWidth
-              defaultValue={decodedUser.email}
+              defaultValue={user.email}
               disabled={enableEdit}
               autoComplete="email"
             />
@@ -154,7 +144,7 @@ function Account() {
               size="small"
               margin="normal"
               fullWidth
-              defaultValue={decodedUser.userName}
+              defaultValue={user.userName}
               disabled={enableEdit}
               autoComplete="username"
             />
