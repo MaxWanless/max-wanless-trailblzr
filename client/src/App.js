@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import axios from "axios";
 import Container from "@mui/material/Container";
@@ -43,7 +43,6 @@ function App() {
       body2: { fontSize: 13, fontWeight: 400, lineHeight: "1rem" },
     },
   });
-  let token = "";
 
   useEffect(() => {
     axios
@@ -57,10 +56,7 @@ function App() {
 
   if (!user.firstName) {
     if (sessionStorage.getItem("authorization")) {
-      token = sessionStorage.getItem("authorization").split(" ")[1];
-      setUser(jwt_decode(token));
-    } else if (localStorage.getItem("authorization")) {
-      token = localStorage.getItem("authorization").split(" ")[1];
+      let token = sessionStorage.getItem("authorization").split(" ")[1];
       setUser(jwt_decode(token));
     }
   }

@@ -176,7 +176,7 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
         onClose={handleCloseSnack}
         message={favSuccess.message}
         action={
-          <Link to="/Favourites">
+          <Link to="/Favourites" style={{ textDecoration: "none" }}>
             <Button color="primary">open</Button>
           </Link>
         }
