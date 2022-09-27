@@ -39,9 +39,7 @@ This project was completed as my capstone for the BrainStation Web-Development b
 
 ## Screenshots
 
-- Screenshot 1
-- Screenshot 2
-- Screenshot 3
+<img align="left" alt="Screenshots" width="100%" src="./client\src\assets\screenshots\laptop_&_Iphone.png" />
 
 ## Installation Instructions
 
