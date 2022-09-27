@@ -8,7 +8,7 @@ This project was completed as my capstone for the BrainStation Web-Development b
 - [Tech Stack](#-tech-stack)
 - [Features](#-features)
 - [Screenshots](#-screenshots)
-- [Installation Instructions](#-installation-instructions)
+- [Setup Instructions](#-setup-instructions)
 - [Next Steps](#-next-steps)
 - [Contact Me](#-contact)
 
@@ -38,24 +38,24 @@ Please follow the link to view a live [Demo](https://trailblzr-client.herokuapp.
 
 ## ✨ Features
 
-- Browse provincial parks in Ontario
-- Retrieve information about parks like contact information, highlights and trails
-- Create an account to favourite parks of your choosing 
+- Browse provincial parks in Ontario.
+- Retrieve information about parks like contact information, highlights and trails.
+- Create an account to favourite parks of your choosing. 
 
 
 ## 📸 Screenshots
 
 <img align="left" alt="Screenshots" width="100%" src="./client\src\assets\screenshots\laptop_&_Iphone.png" />
-
+desktop and mobile dashboards
 <br />
 
-## ⚙️ Installation Instructions
+## ⚙️ Setup Instructions
 
 - Follow this [link](https://www.youtube.com/watch?v=2_HZObVbe-g&t=1s&ab_channel=GoogleMapsPlatform) to learn how to obtain a google maps API key. 
 - Download or clone the project repository.
 - In the client folder create a `.env` file with the following variables: 
- - `REACT_APP_API_URL` The url for your API server 
- - `REACT_APP_GOOGLE_API_KEY` The API key obtained above.
+  - `REACT_APP_API_URL` The url for your API server 
+  - `REACT_APP_GOOGLE_API_KEY` The API key obtained above.
 - In the server folder create a `.env` file with the following variables:
   - `PORT` The port you wish your API server to run on. (eg. "5050")
   - `BACKEND_URL` The url for your API server. (eg. "http://localhost")
