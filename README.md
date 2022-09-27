@@ -57,19 +57,22 @@ Please follow the link to view a live [Demo](https://trailblzr-client.herokuapp.
  - `REACT_APP_API_URL` The url for your API server 
  - `REACT_APP_GOOGLE_API_KEY` The API key obtained above.
 - In the server folder create a `.env` file with the following variables:
-  - `PORT` The port you wish your API server to run on.
-  - `BACKEND_URL` The url for your API server.
+  - `PORT` The port you wish your API server to run on. (eg. "5050")
+  - `BACKEND_URL` The url for your API server. (eg. "http://localhost")
   - `ACCESS_TOKEN_SECRET` The secret used to generate your JSON Web Token.
   - `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_DATABASE` The information for your mySQL database.
 - `npm run i` in root folder.
 - `npm run postInstall` in root folder.
+- cd into server folder and run `npm run migrate` and then `npm run seed` to create database tables.
 - `npm run dev` in root folder.
 - If port is already in use, use command `killall -9 node` and start again.
 
 ## 👟 Next Steps
 
-- Planned feature 1
-- Planned feature 2
+- Add a search functionality to make finding parks easier. 
+- Add the ability to store more data about parks and trails like trail maps. 
+- Implement a new authentication system like Oauth. 
+- Add ability for users to review parks. 
 
 ## 📬 Contact ##
 
