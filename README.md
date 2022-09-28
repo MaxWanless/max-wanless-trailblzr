@@ -8,7 +8,7 @@ This project was completed as my capstone for the BrainStation Web-Development b
 - [Tech Stack](#-tech-stack)
 - [Features](#-features)
 - [Screenshots](#-screenshots)
-- [Setup Instructions](#-setup-instructions)
+- [Setup Instructions](#EF%B8%8F-setup-instructions)
 - [Next Steps](#-next-steps)
 - [Contact Me](#-contact)
 
