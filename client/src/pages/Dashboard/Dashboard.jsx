@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
 import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
+import { UserContext } from "../../hooks/userContext";
 import "./Dashboard.scss";
 
-function Dashboard({ parks, user }) {
+function Dashboard({ parks }) {
+  const { user } = useContext(UserContext);
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [displayParkDetails, setDisplayParkDetails] = useState(false);

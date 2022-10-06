@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react";
-import jwt_decode from "jwt-decode";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import axios from "axios";
@@ -12,13 +11,11 @@ import ParkDetails from "./pages/ParkDetails/ParkDetails";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Headers/Header/Header";
-import { UserContext } from "./hooks/userContext";
 import "./App.scss";
 
 function App() {
   const [parks, setParks] = useState(true);
   const [loading, setLoading] = useState(true);
-  const { user, setUser } = useContext(UserContext);
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -55,13 +52,6 @@ function App() {
       .catch((error) => {});
   }, []);
 
-  if (!user.firstName) {
-    if (sessionStorage.getItem("authorization")) {
-      let token = sessionStorage.getItem("authorization").split(" ")[1];
-      setUser(jwt_decode(token));
-    }
-  }
-
   if (loading) {
     return <div>...Loading</div>;
   }
@@ -73,16 +63,10 @@ function App() {
         <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
           <Routes>
             <Route path="/" element={<SignIn />} />
-            <Route
-              path="/Dashboard"
-              element={<Dashboard parks={parks} user={user} />}
-            />
+            <Route path="/Dashboard" element={<Dashboard parks={parks} />} />
             <Route path="/Dashboard/:parkId" element={<ParkDetails />} />
-            <Route path="/Map" element={<Map parks={parks} user={user} />} />
-            <Route
-              path="/Favourites"
-              element={<Favourites parks={parks} user={user} />}
-            />
+            <Route path="/Map" element={<Map parks={parks} />} />
+            <Route path="/Favourites" element={<Favourites parks={parks} />} />
             <Route path="/Account" element={<Account />} />
             <Route path="/Signin" element={<SignIn />} />
             <Route path="/Signup" element={<SignUp />} />

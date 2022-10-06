@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../hooks/userContext";
 import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import axios from "axios";
@@ -10,7 +11,8 @@ import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileD
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Favourites.scss";
 
-function Favourites({ parks, user }) {
+function Favourites({ parks }) {
+  const { user } = useContext(UserContext);
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(true);
@@ -54,7 +56,7 @@ function Favourites({ parks, user }) {
     return (
       <Card sx={{ margin: " 0 1rem" }}>
         <CardContent>
-          No favourites back to 
+          No favourites back to
           <Link to="/Dashboard">Dashboard</Link>
         </CardContent>
       </Card>
