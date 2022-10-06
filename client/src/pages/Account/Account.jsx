@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Container from "@mui/material/Container";
@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
+import { UserContext } from "../../hooks/userContext";
+
 import "./Account.scss";
 
 const ModalStyle = {
@@ -24,7 +26,8 @@ const ModalStyle = {
   padding: "1rem",
 };
 
-function Account({ handleUserChange, user }) {
+function Account() {
+  const { user, setUser } = useContext(UserContext);
   const [signOut, setSignOut] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [updateInfoSuccess, setUpdateInfoSuccess] = useState(false);
@@ -42,8 +45,8 @@ function Account({ handleUserChange, user }) {
     sessionStorage.removeItem("authorization");
     localStorage.removeItem("authorization");
     setEnableEdit(true);
+    setUser({});
     setSignOut(true);
-    handleUserChange({});
   };
 
   const handleOpenDeleteModalAccount = () => {

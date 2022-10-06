@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import jwt_decode from "jwt-decode";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -12,12 +12,13 @@ import ParkDetails from "./pages/ParkDetails/ParkDetails";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Headers/Header/Header";
+import { UserContext } from "./hooks/userContext";
 import "./App.scss";
 
 function App() {
   const [parks, setParks] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(UserContext);
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -61,10 +62,6 @@ function App() {
     }
   }
 
-  const handleUserChange = (user) => {
-    setUser(user);
-  };
-
   if (loading) {
     return <div>...Loading</div>;
   }
@@ -72,13 +69,10 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
-        <Header user={user} />
+        <Header />
         <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
           <Routes>
-            <Route
-              path="/"
-              element={<SignIn handleUserChange={handleUserChange} />}
-            />
+            <Route path="/" element={<SignIn />} />
             <Route
               path="/Dashboard"
               element={<Dashboard parks={parks} user={user} />}
@@ -89,16 +83,8 @@ function App() {
               path="/Favourites"
               element={<Favourites parks={parks} user={user} />}
             />
-            <Route
-              path="/Account"
-              element={
-                <Account handleUserChange={handleUserChange} user={user} />
-              }
-            />
-            <Route
-              path="/Signin"
-              element={<SignIn handleUserChange={handleUserChange} />}
-            />
+            <Route path="/Account" element={<Account />} />
+            <Route path="/Signin" element={<SignIn />} />
             <Route path="/Signup" element={<SignUp />} />
           </Routes>
         </Container>

@@ -1,12 +1,12 @@
 import React from "react";
 
-export const userContext = React.createContext();
+export const UserContext = React.createContext();
 
-export const userArea = ({ children }) => {
-  const [user, setUser] = React.useState(null);
+export const UserProvider = ({ children, initialUser }) => {
+  const [user, setUser] = React.useState(initialUser);
   return (
-    <userContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 };
