@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../hooks/userContext";
+import { ParksContext } from "../../hooks/parksContext";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -28,8 +29,9 @@ const center = {
   lng: -85.917334,
 };
 
-const Map = ({ parks }) => {
+const Map = () => {
   const { user } = useContext(UserContext);
+  const { parks } = useContext(ParksContext);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });

@@ -1,13 +1,17 @@
 import { useState, useContext } from "react";
 import { useTheme } from "@emotion/react";
+import { UserContext } from "../../hooks/userContext";
+import { ParksContext } from "../../hooks/parksContext";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
+import Skeleton from "@mui/material/Skeleton";
 import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileDashboard";
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
-import { UserContext } from "../../hooks/userContext";
+
 import "./Dashboard.scss";
 
-function Dashboard({ parks }) {
+function Dashboard() {
+  const { parks, loading } = useContext(ParksContext);
   const { user } = useContext(UserContext);
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
@@ -25,7 +29,9 @@ function Dashboard({ parks }) {
     setDisplayParkDetails(false);
   };
 
-  return (
+  return loading ? (
+    <Skeleton variant="rounded" height={"100%"} width={"100%"} />
+  ) : (
     <Container maxWidth="lg" sx={{ height: "100%", overflow: "hidden" }}>
       {mobileView ? (
         <MobileDashboard

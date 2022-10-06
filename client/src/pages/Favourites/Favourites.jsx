@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../hooks/userContext";
-import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+import { UserContext } from "../../hooks/userContext";
+import { ParksContext } from "../../hooks/parksContext";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Container from "@mui/material/Container";
@@ -11,8 +12,9 @@ import MobileDashboard from "../../components/DashBoards/MobileDashboard/MobileD
 import DesktopDashboard from "../../components/DashBoards/DesktopDashBoard/DesktopDashboard";
 import "./Favourites.scss";
 
-function Favourites({ parks }) {
+function Favourites() {
   const { user } = useContext(UserContext);
+  const { parks } = useContext(ParksContext);
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(true);

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import axios from "axios";
+import { UserProvider } from "./hooks/userContext";
+import { ParksProvider } from "./hooks/parksContext";
 import Container from "@mui/material/Container";
 import Account from "./pages/Account/Account";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -14,8 +14,6 @@ import Header from "./components/Headers/Header/Header";
 import "./App.scss";
 
 function App() {
-  const [parks, setParks] = useState(true);
-  const [loading, setLoading] = useState(true);
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -42,36 +40,28 @@ function App() {
     },
   });
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/parks`)
-      .then((response) => {
-        setParks(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {});
-  }, []);
-
-  if (loading) {
-    return <div>...Loading</div>;
-  }
-
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
-        <Header />
-        <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
-          <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="/Dashboard" element={<Dashboard parks={parks} />} />
-            <Route path="/Dashboard/:parkId" element={<ParkDetails />} />
-            <Route path="/Map" element={<Map parks={parks} />} />
-            <Route path="/Favourites" element={<Favourites parks={parks} />} />
-            <Route path="/Account" element={<Account />} />
-            <Route path="/Signin" element={<SignIn />} />
-            <Route path="/Signup" element={<SignUp />} />
-          </Routes>
-        </Container>
+        <UserProvider initialUser={{}}>
+          <BrowserRouter>
+            <Header />
+            <ParksProvider>
+              <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
+                <Routes>
+                  <Route path="/" element={<SignIn />} />
+                  <Route path="/Dashboard" element={<Dashboard />} />
+                  <Route path="/Dashboard/:parkId" element={<ParkDetails />} />
+                  <Route path="/Map" element={<Map />} />
+                  <Route path="/Favourites" element={<Favourites />} />
+                  <Route path="/Account" element={<Account />} />
+                  <Route path="/Signin" element={<SignIn />} />
+                  <Route path="/Signup" element={<SignUp />} />
+                </Routes>
+              </Container>
+            </ParksProvider>
+          </BrowserRouter>
+        </UserProvider>
       </ThemeProvider>
     </div>
   );
