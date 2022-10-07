@@ -4,6 +4,7 @@ import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import Skeleton from "@mui/material/Skeleton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
@@ -91,11 +92,14 @@ const ParkDetailsCard = ({ handleChange, currentParkID, user }) => {
     setFavError({ error: false, message: "" });
   };
 
-  if (isLoading) {
-    return <div>...Loading</div>;
-  }
-
-  return (
+  return isLoading ? (
+    <Skeleton
+      variant="rounded"
+      height={"100%"}
+      width={"100%"}
+      animation="wave"
+    />
+  ) : (
     <>
       <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <CardContent>

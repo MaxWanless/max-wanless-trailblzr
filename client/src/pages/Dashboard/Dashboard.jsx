@@ -30,7 +30,12 @@ function Dashboard() {
   };
 
   return loading ? (
-    <Skeleton variant="rounded" height={"100%"} width={"100%"} />
+    <Skeleton
+      variant="rounded"
+      height={"100%"}
+      width={"100%"}
+      animation="wave"
+    />
   ) : (
     <Container maxWidth="lg" sx={{ height: "100%", overflow: "hidden" }}>
       {mobileView ? (
