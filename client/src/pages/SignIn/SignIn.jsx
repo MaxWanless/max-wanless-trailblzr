@@ -1,6 +1,7 @@
 import { useState, forwardRef, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
+import { UserContext } from "../../hooks/userContext";
+import axios from "../../api/axios";
 import jwt_decode from "jwt-decode";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -11,14 +12,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import { UserContext } from "../../hooks/userContext";
+
 import "./SignIn.scss";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function SignIn({ handleUserChange }) {
+function SignIn() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState({ error: false, message: "" });
   const { setUser } = useContext(UserContext);
@@ -34,9 +35,8 @@ function SignIn({ handleUserChange }) {
       password: event.target.password.value,
     };
     axios
-      .post(`${process.env.REACT_APP_API_URL}/users/login`, userInfo)
+      .post("/users/login", userInfo)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           sessionStorage.setItem(
             "authorization",
@@ -47,6 +47,7 @@ function SignIn({ handleUserChange }) {
         const decodedUser = jwt_decode(token);
         setUser(decodedUser);
         setIsLoggedIn(true);
+        return <Navigate to="/Dashboard" />
       })
       .catch((error) => {
         setLoginError({ error: true, message: error.response.data.message });

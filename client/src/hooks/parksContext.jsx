@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 
 export const ParksContext = createContext();
 
@@ -9,7 +9,7 @@ export const ParksProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/parks`)
+      .get("/parks")
       .then((response) => {
         setParks(response.data);
         setLoading(false);
