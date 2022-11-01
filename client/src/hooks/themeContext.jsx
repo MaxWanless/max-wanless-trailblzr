@@ -21,6 +21,9 @@ export const ThemeContext = ({ children }) => {
       secondary: {
         main: "#FFFFFF",
       },
+      background: {
+        paper: '#313131',
+      },
     },
     typography: {
       fontFamily: [
