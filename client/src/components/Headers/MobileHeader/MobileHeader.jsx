@@ -4,7 +4,7 @@ import TerrainIcon from "@mui/icons-material/Terrain";
 import MobileNavMenu from "./MobileNavMenu";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
 
-const MobileHeader = ({ user }) => {
+const MobileHeader = () => {
   return (
     <AppBar
       position="static"
@@ -41,7 +41,7 @@ const MobileHeader = ({ user }) => {
             </Typography>
           </Box>
           {/* User Menu */}
-          <AvatarMenu user={user} />
+          <AvatarMenu />
         </Toolbar>
       </Container>
     </AppBar>

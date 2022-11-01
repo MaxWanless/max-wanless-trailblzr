@@ -9,7 +9,7 @@ import Tab from "@mui/material/Tab";
 import TerrainIcon from "@mui/icons-material/Terrain";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
 
-const DesktopHeader = ({ user }) => {
+const DesktopHeader = () => {
   const pathName = useLocation().pathname;
   const pages = ["Dashboard", "Map"];
   const routes = ["/Dashboard", "/Map"];
@@ -59,7 +59,7 @@ const DesktopHeader = ({ user }) => {
             </Tabs>
           </Box>
           {/* Search Bar */}
-          <AvatarMenu user={user} />
+          <AvatarMenu />
         </Toolbar>
       </Container>
     </AppBar>

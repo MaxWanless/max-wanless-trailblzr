@@ -14,7 +14,7 @@ export const ThemeContext = ({ children }) => {
 
   const darkTheme = createTheme({
     palette: {
-      mode: "light",
+      mode: "dark",
       primary: {
         main: "#697e59",
       },

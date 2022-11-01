@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../hooks/userContext";
+import { ModeContext } from "../../../hooks/modeContext";
+import { useTheme } from "@emotion/react";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import MenuList from "@mui/material/MenuList";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Tooltip from "@mui/material/Tooltip";
@@ -11,9 +15,14 @@ import Typography from "@mui/material/Typography";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Logout from "@mui/icons-material/Logout";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-const AvatarMenu = ({ user }) => {
+const AvatarMenu = () => {
+  const { user, handleSignOut } = useContext(UserContext);
+  const { setMode } = useContext(ModeContext);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const theme = useTheme();
 
   const stringToColor = (string) => {
     let hash = 0;
@@ -83,30 +92,51 @@ const AvatarMenu = ({ user }) => {
         onClose={handleCloseUserMenu}
       >
         {user.firstName ? (
-          <div>
+          <MenuList>
             <Link className="header__link" to="/Account">
               <MenuItem onClick={handleCloseUserMenu}>
                 <ListItemIcon>
-                  <AccountCircleIcon fontSize="small" />
+                  <AccountCircleIcon />
                 </ListItemIcon>
-                <Typography textAlign="center">Profile</Typography>
+                Profile
               </MenuItem>
             </Link>
+
             <Link className="header__link" to="/favourites">
               <MenuItem onClick={handleCloseUserMenu}>
                 <ListItemIcon>
-                  <FavoriteIcon fontSize="small" />
+                  <FavoriteIcon />
                 </ListItemIcon>
-                <Typography textAlign="center">Favourites</Typography>
+                Favourites
               </MenuItem>
             </Link>
-            <MenuItem>
+
+            <MenuItem
+              onClick={() =>
+                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
+              }
+            >
               <ListItemIcon>
-                <Logout fontSize="small" />
+                {theme.palette.mode === "dark" ? (
+                  <LightModeIcon />
+                ) : (
+                  <DarkModeIcon />
+                )}
               </ListItemIcon>
-              <Typography textAlign="center">Logout</Typography>
+              {theme.palette.mode} mode
             </MenuItem>
-          </div>
+            <MenuItem
+              onClick={() => {
+                handleSignOut();
+                handleCloseUserMenu();
+              }}
+            >
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+          </MenuList>
         ) : (
           <Link className="header__link" to="/signin">
             <MenuItem onClick={handleCloseUserMenu}>
