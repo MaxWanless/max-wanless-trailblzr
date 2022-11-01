@@ -15,13 +15,12 @@ import Header from "./components/Headers/Header/Header";
 import "./App.scss";
 
 function App() {
-
   return (
     <div className="app">
       <ModeProvider>
         <ThemeContext>
-          <UserProvider initialUser={{}}>
-            <BrowserRouter>
+          <BrowserRouter>
+            <UserProvider initialUser={{}}>
               <Header />
               <ParksProvider>
                 <Container sx={{ height: "calc(100vh - 65px)" }} disableGutters>
@@ -40,8 +39,8 @@ function App() {
                   </Routes>
                 </Container>
               </ParksProvider>
-            </BrowserRouter>
-          </UserProvider>
+            </UserProvider>
+          </BrowserRouter>
         </ThemeContext>
       </ModeProvider>
     </div>

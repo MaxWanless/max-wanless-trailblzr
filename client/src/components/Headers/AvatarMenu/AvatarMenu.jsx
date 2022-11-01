@@ -2,11 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Logout from "@mui/icons-material/Logout";
 
 const AvatarMenu = ({ user }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -82,14 +86,26 @@ const AvatarMenu = ({ user }) => {
           <div>
             <Link className="header__link" to="/Account">
               <MenuItem onClick={handleCloseUserMenu}>
+                <ListItemIcon>
+                  <AccountCircleIcon fontSize="small" />
+                </ListItemIcon>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
             </Link>
             <Link className="header__link" to="/favourites">
               <MenuItem onClick={handleCloseUserMenu}>
+                <ListItemIcon>
+                  <FavoriteIcon fontSize="small" />
+                </ListItemIcon>
                 <Typography textAlign="center">Favourites</Typography>
               </MenuItem>
             </Link>
+            <MenuItem>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              <Typography textAlign="center">Logout</Typography>
+            </MenuItem>
           </div>
         ) : (
           <Link className="header__link" to="/signin">

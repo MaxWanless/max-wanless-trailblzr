@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../../hooks/userContext";
 import axios from "axios";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -11,8 +12,6 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { UserContext } from "../../hooks/userContext";
-
 import "./Account.scss";
 
 const ModalStyle = {
@@ -27,27 +26,10 @@ const ModalStyle = {
 };
 
 function Account() {
-  const { user, setUser } = useContext(UserContext);
-  const [signOut, setSignOut] = useState(false);
+  const { user, handleSignOut, enableEdit, handleEditUser } =
+    useContext(UserContext);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [updateInfoSuccess, setUpdateInfoSuccess] = useState(false);
-  const [enableEdit, setEnableEdit] = useState(true);
-
-  if (
-    !sessionStorage.getItem("authorization") &&
-    !localStorage.getItem("authorization") &&
-    !signOut
-  ) {
-    setSignOut(true);
-  }
-
-  const handleSignOut = () => {
-    sessionStorage.removeItem("authorization");
-    localStorage.removeItem("authorization");
-    setEnableEdit(true);
-    setUser({});
-    setSignOut(true);
-  };
 
   const handleOpenDeleteModalAccount = () => {
     setOpenDeleteModal(true);
@@ -73,16 +55,8 @@ function Account() {
     });
   };
 
-  const handleEditUser = () => {
-    setEnableEdit(!enableEdit);
-  };
-
   if (updateInfoSuccess) {
     return <Navigate to="/Dashboard" />;
-  }
-
-  if (signOut) {
-    return <Navigate to="/" />;
   }
 
   return (
@@ -95,7 +69,6 @@ function Account() {
             <Typography variant="h2" sx={{ flexGrow: 1 }}>
               Account
             </Typography>
-
             <IconButton
               sx={{ justifySelf: "flex-end" }}
               onClick={handleEditUser}
