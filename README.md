@@ -13,7 +13,7 @@ This project was completed as my capstone for the BrainStation Web-Development b
 - [Contact Me](#-contact)
 
 ## 📲 Live Demo
-Please follow the link to view a live (Stay tuned!)
+Please follow the link to view a live demo (Stay tuned!)
 <!-- [Demo](https://trailblzr-client.herokuapp.com/) -->
 
 ## 💻 Tech Stack
